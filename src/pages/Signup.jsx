@@ -1,23 +1,57 @@
 import { useState } from "react";
 import { signUp } from "../firebase/firebaseAuth";
 import { useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // ✅ Import React Icons
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { db } from "../firebaseConfig";
+import { collection, query, where, getDocs, setDoc, doc } from "firebase/firestore";
 
 const Signup = () => {
+    const [fullName, setFullName] = useState("");
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [branch, setBranch] = useState("");
+    const [year, setYear] = useState("");
+    const [division, setDivision] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
+
+    const branches = ["Computer Science", "Information Technology", "Electronics", "Mechanical", "Civil", "Other"];
+    const years = ["First", "Second", "Third", "Fourth"];
+    const divisions = ["A", "B", "C", "D"];
+
+    const checkUsernameExists = async (username) => {
+        const usersRef = collection(db, "users");
+        const q = query(usersRef, where("username", "==", username));
+        const querySnapshot = await getDocs(q);
+        return !querySnapshot.empty;
+    };
 
     const handleSignUp = async (e) => {
         e.preventDefault();
         setError("");
         setSuccess("");
 
+        if (await checkUsernameExists(username)) {
+            setError("Username already taken. Choose a different one.");
+            return;
+        }
+
         try {
-            await signUp(email, password);
+            const userCredential = await signUp(email, password);
+            const user = userCredential.user;
+            await setDoc(doc(db, "users", user.uid), {
+                fullName,
+                username,
+                email,
+                branch,
+                year,
+                division,
+                uid: user.uid
+            });
+
             setSuccess("User signed up successfully!");
             setTimeout(() => navigate("/login"), 2000);
         } catch (err) {
@@ -31,38 +65,84 @@ const Signup = () => {
                 <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
 
                 <form onSubmit={handleSignUp} className="space-y-4">
-                    <div>
-                        <label className="block text-gray-700">Email</label>
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-400"
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-400"
+                        required
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-400"
+                        required
+                    />
+                    <div className="relative">
                         <input
-                            type="email"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-400"
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-400 pr-10"
                             required
                         />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 bg-transparent p-1"
+                        >
+                            {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                        </button>
                     </div>
 
-                    <div>
-                        <label className="block text-gray-700">Password</label>
-                        <div className="relative">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-400 pr-10"
-                                required
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 bg-transparent p-1"
-                            >
-                                {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
-                            </button>
+                    <select
+                        value={year}
+                        onChange={(e) => setYear(e.target.value)}
+                        className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-400 cursor-pointer"
+                        required
+                    >
+                        <option value="">Year</option>
+                        {years.map((y) => (
+                            <option key={y} value={y}>{y}</option>
+                        ))}
+                    </select>
 
-                        </div>
+                    <div className="flex gap-4">
+                        <select
+                            value={branch}
+                            onChange={(e) => setBranch(e.target.value)}
+                            className="w-1/2 p-2 border rounded focus:ring-2 focus:ring-blue-400 cursor-pointer"
+                            required
+                        >
+                            <option value="">Branch</option>
+                            {branches.map((b) => (
+                                <option key={b} value={b}>{b}</option>
+                            ))}
+                        </select>
+
+                        <select
+                            value={division}
+                            onChange={(e) => setDivision(e.target.value)}
+                            className="w-1/2 p-2 border rounded focus:ring-2 focus:ring-blue-400 cursor-pointer"
+                            required
+                        >
+                            <option value="">Division</option>
+                            {divisions.map((d) => (
+                                <option key={d} value={d}>{d}</option>
+                            ))}
+                        </select>
                     </div>
 
                     <button
