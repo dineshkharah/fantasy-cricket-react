@@ -1,0 +1,1818 @@
+[
+  {
+    "Name": "Ruturaj Gaikwad",
+    "Team": "Chennai Super Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹18 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Ravindra Jadeja",
+    "Team": "Chennai Super Kings",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹18 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Matheesha Pathirana",
+    "Team": "Chennai Super Kings",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹13 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Shivam Dube",
+    "Team": "Chennai Super Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹12 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "MS Dhoni",
+    "Team": "Chennai Super Kings",
+    "Role": "Batter/Wicketkeeper",
+    "Nationality": "Domestic",
+    "Price": "₹4 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Devon Conway",
+    "Team": "Chennai Super Kings",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹6.25 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Rahul Tripathi",
+    "Team": "Chennai Super Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹3.40 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Rachin Ravindra",
+    "Team": "Chennai Super Kings",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹4 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Ravichandran Ashwin",
+    "Team": "Chennai Super Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹9.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Syed Khaleel Ahmed",
+    "Team": "Chennai Super Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹4.80 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Noor Ahmad",
+    "Team": "Chennai Super Kings",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹10 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Vijay Shankar",
+    "Team": "Chennai Super Kings",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹1.20 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Sam Curran",
+    "Team": "Chennai Super Kings",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹2.40 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Shaik Rasheed",
+    "Team": "Chennai Super Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Anshul Kamboj",
+    "Team": "Chennai Super Kings",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹3.40 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Mukesh Choudhary",
+    "Team": "Chennai Super Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Deepak Hooda",
+    "Team": "Chennai Super Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹1.70 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Gurjapneet Singh",
+    "Team": "Chennai Super Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹2.20 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Nathan Ellis",
+    "Team": "Chennai Super Kings",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹1.25 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Ramakrishna Ghosh",
+    "Team": "Chennai Super Kings",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Kamlesh Nagarkoti",
+    "Team": "Chennai Super Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Jamie Overton",
+    "Team": "Chennai Super Kings",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹1.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Shreyas Gopal",
+    "Team": "Chennai Super Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Vansh Bedi",
+    "Team": "Chennai Super Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹55 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "C Andre Siddarth",
+    "Team": "Chennai Super Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Axar Patel",
+    "Team": "Delhi Capitals",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹16.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Kuldeep Yadav",
+    "Team": "Delhi Capitals",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹13.25 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Tristan Stubbs",
+    "Team": "Delhi Capitals",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹10 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Abishek Porel",
+    "Team": "Delhi Capitals",
+    "Role": "Batter/Wicketkeeper",
+    "Nationality": "Domestic",
+    "Price": "₹4 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Mitchell Starc",
+    "Team": "Delhi Capitals",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹11.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "KL Rahul",
+    "Team": "Delhi Capitals",
+    "Role": "Batter/Wicketkeeper",
+    "Nationality": "Domestic",
+    "Price": "₹14 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Jake Fraser-Mcgurk",
+    "Team": "Delhi Capitals",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹9 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "T Natarajan",
+    "Team": "Delhi Capitals",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹10.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Karun Nair",
+    "Team": "Delhi Capitals",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹50 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Sameer Rizvi",
+    "Team": "Delhi Capitals",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹95 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Ashutosh Sharma",
+    "Team": "Delhi Capitals",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹3.80 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Mohit Sharma",
+    "Team": "Delhi Capitals",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹2.20 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Faf du Plessis",
+    "Team": "Delhi Capitals",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹2 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Mukesh Kumar",
+    "Team": "Delhi Capitals",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹8 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Darshan Nalkande",
+    "Team": "Delhi Capitals",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Vipraj Nigam",
+    "Team": "Delhi Capitals",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹50 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Dushmantha Chameera",
+    "Team": "Delhi Capitals",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Donovan Ferreira",
+    "Team": "Delhi Capitals",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Ajay Mandal",
+    "Team": "Delhi Capitals",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Manvanth Kumar",
+    "Team": "Delhi Capitals",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Madhav Tiwari",
+    "Team": "Delhi Capitals",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹40 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Tripurana Vijay",
+    "Team": "Delhi Capitals",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Rashid Khan",
+    "Team": "Gujarat Titans",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹18 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Shubman Gill",
+    "Team": "Gujarat Titans",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹16.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Sai Sudharsan",
+    "Team": "Gujarat Titans",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹8.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Rahul Tewatia",
+    "Team": "Gujarat Titans",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹4 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Shahrukh Khan",
+    "Team": "Gujarat Titans",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹4 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Kagiso Rabada",
+    "Team": "Gujarat Titans",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹10.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Jos Buttler",
+    "Team": "Gujarat Titans",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹15.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Mohammad Siraj",
+    "Team": "Gujarat Titans",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹12.25 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Prasidh Krishna",
+    "Team": "Gujarat Titans",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹9.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Nishant Sindhu",
+    "Team": "Gujarat Titans",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Mahipal Lomror",
+    "Team": "Gujarat Titans",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹1.70 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Kumar Kushagra",
+    "Team": "Gujarat Titans",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Domestic",
+    "Price": "₹65 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Anuj Rawat",
+    "Team": "Gujarat Titans",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Manav Suthar",
+    "Team": "Gujarat Titans",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Washington Sundar",
+    "Team": "Gujarat Titans",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹3.20 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Gerald Coetzee",
+    "Team": "Gujarat Titans",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹2.40 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Arshad Khan",
+    "Team": "Gujarat Titans",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹1.30 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Gurnoor Brar",
+    "Team": "Gujarat Titans",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹1.30 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Sherfane Rutherford",
+    "Team": "Gujarat Titans",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹2.6 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "R Sai Kishore",
+    "Team": "Gujarat Titans",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹2 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Ishant Sharma",
+    "Team": "Gujarat Titans",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Jayant Yadav",
+    "Team": "Gujarat Titans",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Glenn Phillips",
+    "Team": "Gujarat Titans",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹2 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Karim Janat",
+    "Team": "Gujarat Titans",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Kulwant Khejroliya",
+    "Team": "Gujarat Titans",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Rinku Singh",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹13 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Varun Chakaravarthy",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹12 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Sunil Narine",
+    "Team": "Kolkata Knight Riders",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹12 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Andre Russell",
+    "Team": "Kolkata Knight Riders",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹12 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Harshit Rana",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹4 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Ramandeep Singh",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹4 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Venkatesh Iyer",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹23.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Quinton de Kock",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Overseas",
+    "Price": "₹3.60 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Rahmanullah Gurbaz",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Overseas",
+    "Price": "₹2 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Anrich Nortje",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹6.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Angkrish Raghuvanshi",
+    "Team": "Kolkata Knight Riders",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹3 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Vaibhav Arora",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹1.80 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Mayank Markande",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Rovman Powell",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹1.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Manish Pandey",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Spencer Johnson",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹2.80 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Luvnith Sisodia",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Ajinkya Rahane",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹1.5 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Anukul Roy",
+    "Team": "Kolkata Knight Riders",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹40 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Moeen Ali",
+    "Team": "Kolkata Knight Riders",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹2 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Chetan Sakariya",
+    "Team": "Kolkata Knight Riders",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Nicholas Pooran",
+    "Team": "Lucknow Super Giants",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Overseas",
+    "Price": "₹21 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Ravi Bishnoi",
+    "Team": "Lucknow Super Giants",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹11 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Mayank Yadav",
+    "Team": "Lucknow Super Giants",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹11 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Mohsin Khan",
+    "Team": "Lucknow Super Giants",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹4 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Ayush Badoni",
+    "Team": "Lucknow Super Giants",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹4 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Rishabh Pant",
+    "Team": "Lucknow Super Giants",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Domestic",
+    "Price": "₹27 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "David Miller",
+    "Team": "Lucknow Super Giants",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹7.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Mitchell Marsh",
+    "Team": "Lucknow Super Giants",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹3.40 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Aiden Markram",
+    "Team": "Lucknow Super Giants",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹2.00 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Avesh Khan",
+    "Team": "Lucknow Super Giants",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹9.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Abdul Samad",
+    "Team": "Lucknow Super Giants",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹4.20 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Aryan Juyal",
+    "Team": "Lucknow Super Giants",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Akash Deep",
+    "Team": "Lucknow Super Giants",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹8 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Himmat Singh",
+    "Team": "Lucknow Super Giants",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "M Siddharth",
+    "Team": "Lucknow Super Giants",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹75 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Digvesh Singh",
+    "Team": "Lucknow Super Giants",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Shahbaz Ahmed",
+    "Team": "Lucknow Super Giants",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹2.4 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Akash Singh",
+    "Team": "Lucknow Super Giants",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Shamar Joseph",
+    "Team": "Lucknow Super Giants",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Prince Yadav",
+    "Team": "Lucknow Super Giants",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Yuvraj Chaudhary",
+    "Team": "Lucknow Super Giants",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Rajvardhan Hangargekar",
+    "Team": "Lucknow Super Giants",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Arshin Kulkarni",
+    "Team": "Lucknow Super Giants",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Matthew Breetzke",
+    "Team": "Lucknow Super Giants",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Jasprit Bumrah",
+    "Team": "Mumbai Indians",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹18 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Suryakumar Yadav",
+    "Team": "Mumbai Indians",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹16.35 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Hardik Pandya",
+    "Team": "Mumbai Indians",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹16.35 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Rohit Sharma",
+    "Team": "Mumbai Indians",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹16.30 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Tilak Varma",
+    "Team": "Mumbai Indians",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹8 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Trent Boult",
+    "Team": "Mumbai Indians",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹12.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Naman Dhir",
+    "Team": "Mumbai Indians",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹5.25 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Robin Minz",
+    "Team": "Mumbai Indians",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Domestic",
+    "Price": "₹65 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Karn Sharma",
+    "Team": "Mumbai Indians",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹50 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Ryan Rickelton",
+    "Team": "Mumbai Indians",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹1 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Deepak Chahar",
+    "Team": "Mumbai Indians",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹9.25 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Mujeeb-ur-Rahman",
+    "Team": "Mumbai Indians",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹2 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Will Jacks",
+    "Team": "Mumbai Indians",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹5.25 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Ashwani Kumar",
+    "Team": "Mumbai Indians",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Mitchell Santner",
+    "Team": "Mumbai Indians",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹2 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Reece Topley",
+    "Team": "Mumbai Indians",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Shrijith Krishnan",
+    "Team": "Mumbai Indians",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Raj Bawa",
+    "Team": "Mumbai Indians",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Satyanarayana Raju",
+    "Team": "Mumbai Indians",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Bevon Jacobs",
+    "Team": "Mumbai Indians",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Arjun Tendulkar",
+    "Team": "Mumbai Indians",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Corbin Bosch",
+    "Team": "Mumbai Indians",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "Not available",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Vignesh Puthur",
+    "Team": "Mumbai Indians",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Shashank Singh",
+    "Team": "Punjab Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹5.5 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Prabhsimran Singh",
+    "Team": "Punjab Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹4 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Arshdeep Singh",
+    "Team": "Punjab Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹18 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Shreyas Iyer",
+    "Team": "Punjab Kings",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Domestic",
+    "Price": "₹26.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Yuzvendra Chahal",
+    "Team": "Punjab Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹18 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Marcus Stoinis",
+    "Team": "Punjab Kings",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹11 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Glenn Maxwell",
+    "Team": "Punjab Kings",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹4.20 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Nehal Wadhera",
+    "Team": "Punjab Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹4.20 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Harpreet Brar",
+    "Team": "Punjab Kings",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹1.50 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Vishnu Vinod",
+    "Team": "Punjab Kings",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Domestic",
+    "Price": "₹95 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Vijaykumar Vyshak",
+    "Team": "Punjab Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹1.80 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Yash Thakur",
+    "Team": "Punjab Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹1.60 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Marco Jansen",
+    "Team": "Punjab Kings",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹7.00 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Josh Inglis",
+    "Team": "Punjab Kings",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹2.60 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Lockie Ferguson",
+    "Team": "Punjab Kings",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹2.00 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Azmatullah Omarzai",
+    "Team": "Punjab Kings",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹2.4 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Harnoor Pannu",
+    "Team": "Punjab Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Kuldeep Sen",
+    "Team": "Punjab Kings",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹80 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Priyansh Arya",
+    "Team": "Punjab Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹3.80 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Aaron Hardie",
+    "Team": "Punjab Kings",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹1.25 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Suryash Shedge",
+    "Team": "Punjab Kings",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Musheer Khan",
+    "Team": "Punjab Kings",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Xavier Bartlett",
+    "Team": "Punjab Kings",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹80 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Pyla Avinash",
+    "Team": "Punjab Kings",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Praveen Dubey",
+    "Team": "Punjab Kings",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Sanju Samson",
+    "Team": "Rajasthan Royals",
+    "Role": "Batter/Wicketkeeper",
+    "Nationality": "Domestic",
+    "Price": "₹18 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Yashasvi Jaiswal",
+    "Team": "Rajasthan Royals",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹18 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Riyan Parag",
+    "Team": "Rajasthan Royals",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹14 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Dhruv Jurel",
+    "Team": "Rajasthan Royals",
+    "Role": "Batter/Wicketkeeper",
+    "Nationality": "Domestic",
+    "Price": "₹14 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Shimron Hetmyer",
+    "Team": "Rajasthan Royals",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹11 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Sandeep Sharma",
+    "Team": "Rajasthan Royals",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹4 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Jofra Archer",
+    "Team": "Rajasthan Royals",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹12.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Mahesh Theekshana",
+    "Team": "Rajasthan Royals",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹4.40 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Wanindu Hasaranga",
+    "Team": "Rajasthan Royals",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹5.25 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Akash Madhwal",
+    "Team": "Rajasthan Royals",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹1.20 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Kumar Kartikeya Singh",
+    "Team": "Rajasthan Royals",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Nitish Rana",
+    "Team": "Rajasthan Royals",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹4.20 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Tushar Deshpande",
+    "Team": "Rajasthan Royals",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹6.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Shubham Dubey",
+    "Team": "Rajasthan Royals",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹80 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Yudhvir Charak",
+    "Team": "Rajasthan Royals",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹35 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Fazalhaq Farooqi",
+    "Team": "Rajasthan Royals",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹2 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Vaibhav Suryavanshi",
+    "Team": "Rajasthan Royals",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹1.1 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Kwena Maphaka",
+    "Team": "Rajasthan Royals",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Ashok Sharma",
+    "Team": "Rajasthan Royals",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Kunal Singh Rathore",
+    "Team": "Rajasthan Royals",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Virat Kohli",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹21 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Rajat Patidar",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹11 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Yash Dayal",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹5 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Liam Livingstone",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹8.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Phil Salt",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Overseas",
+    "Price": "₹11.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Jitesh Sharma",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹11 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Josh Hazlewood",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹12.50 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Rasikh Dar",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹6 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Suyash Sharma",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹2.60 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Krunal Pandya",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹5.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Bhuvneshwar Kumar",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹10.75 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Swapnil Singh",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹50 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Tim David",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹3 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Romario Shepherd",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹1.5 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Nuwan Thushara",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹1.6 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Manoj Bhandage",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Jacob Bethell",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹2.60 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Devdutt Padikkal",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹2 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Swastik Chikara",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Mohit Rathee",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Abhinandan Singh",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Lungi Ngidi",
+    "Team": "Royal Challengers Bengaluru",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹1 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Heinrich Klaasen",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹23 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Pat Cummins",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹18 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Abhishek Sharma",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹14 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Travis Head",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Batter",
+    "Nationality": "Overseas",
+    "Price": "₹14 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Nitish Kumar Reddy",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹6 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Mohammad Shami",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹10 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Harshal Patel",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹8 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Ishan Kishan",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Wicketkeeper/Batter",
+    "Nationality": "Domestic",
+    "Price": "₹11.25 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Rahul Chahar",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹3.2 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Adam Zampa",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹2.4 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Atharva Taide",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Abhinav Manohar",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "All-rounder",
+    "Nationality": "Domestic",
+    "Price": "₹3.2 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Simarjeet Singh",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹1.5 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Zeeshan Ansari",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹40 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Jaydev Unadkat",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Bowler",
+    "Nationality": "Domestic",
+    "Price": "₹1 crore",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Wiaan Mulder",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Kamindu Mendis",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "All-rounder",
+    "Nationality": "Overseas",
+    "Price": "₹75 lakh",
+    "Category": "Capped"
+  },
+  {
+    "Name": "Aniket Verma",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Eshan Malinga",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Bowler",
+    "Nationality": "Overseas",
+    "Price": "₹1.20 crore",
+    "Category": "Uncapped"
+  },
+  {
+    "Name": "Sachin Baby",
+    "Team": "Sunrisers Hyderabad",
+    "Role": "Batter",
+    "Nationality": "Domestic",
+    "Price": "₹30 lakh",
+    "Category": "Uncapped"
+  }
+]
