@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { login } from "../firebase/firebaseAuth";
 import { db } from "../firebaseConfig"; // Import Firestore DB
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { getAuth } from "firebase/auth"; // Import Firebase Auth
 import { useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // ✅ Import React Icons
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
     const [identifier, setIdentifier] = useState(""); // Can be email OR username
@@ -19,7 +20,7 @@ const Login = () => {
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
-            return querySnapshot.docs[0].data().email; // Return the email associated with the username
+            return querySnapshot.docs[0].data().email;
         } else {
             throw new Error("Username not found");
         }
@@ -37,7 +38,21 @@ const Login = () => {
                 emailToUse = await fetchEmailByUsername(identifier);
             }
 
+            // Log in the user
             await login(emailToUse, password);
+
+            // Get Firebase auth instance
+            const auth = getAuth();
+            const user = auth.currentUser;
+
+            if (user) {
+                const token = await user.getIdToken(); // Fetch the ID token
+                console.log("Firebase ID Token:", token);
+
+                // Store token in Local Storage
+                localStorage.setItem("token", token);
+            }
+
             alert("Login successful!");
             navigate("/dashboard");
         } catch (err) {

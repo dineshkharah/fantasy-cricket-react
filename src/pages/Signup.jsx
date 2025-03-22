@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { signUp } from "../firebase/firebaseAuth";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -43,14 +43,16 @@ const Signup = () => {
             const userCredential = await signUp(email, password);
             const user = userCredential.user;
             await setDoc(doc(db, "users", user.uid), {
-                fullName,
-                username,
-                email,
-                branch,
-                year,
-                division,
-                uid: user.uid
-            });
+                uid: user.uid,  // Ensure Firebase UID is stored
+                email: user.email,
+                fullName: fullName,  // Ensure correct key names
+                username: username,
+                branch: branch,
+                year: year,
+                division: division,
+                createdAt: new Date(),
+            }, { merge: true });
+
 
             setSuccess("User signed up successfully!");
             setTimeout(() => navigate("/login"), 2000);
