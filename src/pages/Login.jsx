@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import { login } from "../firebase/firebaseAuth";
-import { db } from "../firebaseConfig"; // Import Firestore DB
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { getAuth } from "firebase/auth"; // Import Firebase Auth
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -13,52 +9,40 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
-    // Function to fetch email if username is entered
-    const fetchEmailByUsername = async (username) => {
-        const usersRef = collection(db, "users");
-        const q = query(usersRef, where("username", "==", username));
-        const querySnapshot = await getDocs(q);
-
-        if (!querySnapshot.empty) {
-            return querySnapshot.docs[0].data().email;
-        } else {
-            throw new Error("Username not found");
-        }
-    };
-
     const handleLogin = async (e) => {
         e.preventDefault();
         setError("");
 
         try {
-            let emailToUse = identifier;
+            console.log("Backend URL:", import.meta.env.VITE_BACKEND_URL);
 
-            // If the input is NOT an email (assume it's a username)
-            if (!identifier.includes("@")) {
-                emailToUse = await fetchEmailByUsername(identifier);
+            // Send login request to backend
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ identifier, password }),
+            });
+
+            const data = await response.json(); // Parse response JSON
+
+            if (!response.ok) {
+                throw new Error(data.message || "Invalid credentials or server error.");
             }
 
-            // Log in the user
-            await login(emailToUse, password);
+            const jwtToken = data.token; // Extract JWT token
 
-            // Get Firebase auth instance
-            const auth = getAuth();
-            const user = auth.currentUser;
-
-            if (user) {
-                const token = await user.getIdToken(); // Fetch the ID token
-                console.log("Firebase ID Token:", token);
-
-                // Store token in Local Storage
-                localStorage.setItem("token", token);
+            if (jwtToken) {
+                localStorage.setItem("token", jwtToken);
+                alert("Login successful!"); // Only show alert if token is stored
+                navigate("/dashboard"); // Redirect to dashboard
+            } else {
+                throw new Error("Login failed. No token received.");
             }
-
-            alert("Login successful!");
-            navigate("/dashboard");
         } catch (err) {
             setError(err.message);
         }
     };
+
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">

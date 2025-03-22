@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { signUp } from "../firebase/firebaseAuth";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { db } from "../firebaseConfig";
-import { collection, query, where, getDocs, setDoc, doc } from "firebase/firestore";
 
 const Signup = () => {
     const [fullName, setFullName] = useState("");
@@ -22,37 +19,28 @@ const Signup = () => {
     const years = ["First", "Second", "Third", "Fourth"];
     const divisions = ["A", "B", "C", "D"];
 
-    const checkUsernameExists = async (username) => {
-        const usersRef = collection(db, "users");
-        const q = query(usersRef, where("username", "==", username));
-        const querySnapshot = await getDocs(q);
-        return !querySnapshot.empty;
-    };
-
     const handleSignUp = async (e) => {
         e.preventDefault();
         setError("");
         setSuccess("");
 
-        if (await checkUsernameExists(username)) {
-            setError("Username already taken. Choose a different one.");
-            return;
-        }
-
         try {
-            const userCredential = await signUp(email, password);
-            const user = userCredential.user;
-            await setDoc(doc(db, "users", user.uid), {
-                uid: user.uid,  // Ensure Firebase UID is stored
-                email: user.email,
-                fullName: fullName,  // Ensure correct key names
-                username: username,
-                branch: branch,
-                year: year,
-                division: division,
-                createdAt: new Date(),
-            }, { merge: true });
+            const response = await fetch("http://localhost:5000/api/v1/auth/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    fullName,
+                    username,
+                    email,
+                    password,
+                    branch,
+                    year,
+                    division
+                }),
+            });
 
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.message || "Signup failed");
 
             setSuccess("User signed up successfully!");
             setTimeout(() => navigate("/login"), 2000);

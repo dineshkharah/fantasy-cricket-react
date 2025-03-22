@@ -47,10 +47,13 @@ const registerUser = async (req, res) => {
 // Login User
 const loginUser = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { identifier, password } = req.body; // Accepts email or username
 
-        // Check if user exists
-        const user = await User.findOne({ email });
+        // Find user by email or username
+        const user = await User.findOne({
+            $or: [{ email: identifier }, { username: identifier }]
+        });
+
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
@@ -69,6 +72,7 @@ const loginUser = async (req, res) => {
         res.status(500).json({ message: "Server error", error });
     }
 };
+
 
 // Get User Profile
 const getUserProfile = async (req, res) => {
