@@ -59,7 +59,7 @@ const PlayerSelection = ({ onPlayerSelect, selectedPlayers }) => {
     }, [searchQuery, selectedTeam, selectedRole, players]);
 
     return (
-        <div className="flex flex-col items-center w-full min-h-screen overflow-hidden pt-16 pb-4">
+        <div className="flex flex-col w-full p-4 rounded-lg shadow-md overflow-auto">
             {/* Filters */}
             <PlayerFilters
                 setSearchQuery={setSearchQuery}

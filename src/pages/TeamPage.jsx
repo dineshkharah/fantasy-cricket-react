@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PlayerSelection from "../components/PlayerSelection/PlayerSelection";
-// import TeamSelection from "../components/TeamSelection/TeamSelection";
+import TeamSelection from "../components/TeamSelection/TeamSelection";
 
 const TeamPage = () => {
     // State to manage selected players
@@ -18,18 +18,19 @@ const TeamPage = () => {
     };
 
     return (
-        <div className="flex flex-col md:flex-row p-4 gap-6">
+        <div className="flex w-full h-screen gap-4 p-4 overflow-hidden">
             {/* Left: Team Selection */}
-            {/* <div className="w-full md:w-1/2 bg-gray-100 p-4 rounded-lg">
-                <TeamSelection selectedPlayers={selectedPlayers} />
-            </div> */}
+            <div className="w-1/2 border border-gray-600 rounded-2xl p-4 flex flex-col overflow-hidden">
+                <PlayerSelection onSelectPlayer={handleSelectPlayer} selectedPlayers={selectedPlayers} />
+            </div>
 
             {/* Right: Player Selection */}
-            <div className="w-full md:w-1/2 bg-gray-100 p-4 rounded-lg">
-                <PlayerSelection onSelectPlayer={handleSelectPlayer} selectedPlayers={selectedPlayers} />
+            <div className="w-1/2 border border-gray-600 rounded-2xl p-4 flex flex-col overflow-hidden">
+                <TeamSelection selectedPlayers={selectedPlayers} />
             </div>
         </div>
     );
+
 };
 
 export default TeamPage;

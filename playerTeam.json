@@ -1,0 +1,322 @@
+[
+  {
+    "_id": "67deff3419a9770abc484667",
+    "userId": "67dec479782d392e04f29e65",
+    "teamName": "All-Star Squad#2",
+    "players": [
+      {
+        "playerID": "RuturajGaikwad_ChennaiSuperKings",
+        "name": "Ruturaj Gaikwad",
+        "team": "Chennai Super Kings",
+        "role": "Batter",
+        "price": "₹18 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc484668"
+      },
+      {
+        "playerID": "AxarPatel_DelhiCapitals",
+        "name": "Axar Patel",
+        "team": "Delhi Capitals",
+        "role": "Bowler",
+        "price": "₹16.50 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc484669"
+      },
+      {
+        "playerID": "ShubmanGill_GujaratTitans",
+        "name": "Shubman Gill",
+        "team": "Gujarat Titans",
+        "role": "Batter",
+        "price": "₹16.50 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc48466a"
+      },
+      {
+        "playerID": "RinkuSingh_KolkataKnightRiders",
+        "name": "Rinku Singh",
+        "team": "Kolkata Knight Riders",
+        "role": "Batter",
+        "price": "₹13 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc48466b"
+      },
+      {
+        "playerID": "NicholasPooran_LucknowSuperGiants",
+        "name": "Nicholas Pooran",
+        "team": "Lucknow Super Giants",
+        "role": "Wicketkeeper/Batter",
+        "price": "₹21 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc48466c"
+      },
+      {
+        "playerID": "JaspritBumrah_MumbaiIndians",
+        "name": "Jasprit Bumrah",
+        "team": "Mumbai Indians",
+        "role": "Bowler",
+        "price": "₹18 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc48466d"
+      },
+      {
+        "playerID": "SamCurran_PunjabKings",
+        "name": "Sam Curran",
+        "team": "Punjab Kings",
+        "role": "All-rounder",
+        "price": "₹2.40 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc48466e"
+      },
+      {
+        "playerID": "SanjuSamson_RajasthanRoyals",
+        "name": "Sanju Samson",
+        "team": "Rajasthan Royals",
+        "role": "Batter/Wicketkeeper",
+        "price": "₹18 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc48466f"
+      },
+      {
+        "playerID": "ViratKohli_RoyalChallengersBengaluru",
+        "name": "Virat Kohli",
+        "team": "Royal Challengers Bengaluru",
+        "role": "Batter",
+        "price": "₹21 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc484670"
+      },
+      {
+        "playerID": "HeinrichKlaasen_SunrisersHyderabad",
+        "name": "Heinrich Klaasen",
+        "team": "Sunrisers Hyderabad",
+        "role": "Batter",
+        "price": "₹23 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc484671"
+      },
+      {
+        "playerID": "RavindraJadeja_ChennaiSuperKings",
+        "name": "Ravindra Jadeja",
+        "team": "Chennai Super Kings",
+        "role": "All-rounder",
+        "price": "₹18 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc484672"
+      },
+      {
+        "playerID": "RashidKhan_GujaratTitans",
+        "name": "Rashid Khan",
+        "team": "Gujarat Titans",
+        "role": "Bowler",
+        "price": "₹18 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc484673"
+      },
+      {
+        "playerID": "DavidMiller_LucknowSuperGiants",
+        "name": "David Miller",
+        "team": "Lucknow Super Giants",
+        "role": "Batter",
+        "price": "₹7.50 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc484674"
+      },
+      {
+        "playerID": "TrentBoult_MumbaiIndians",
+        "name": "Trent Boult",
+        "team": "Mumbai Indians",
+        "role": "Bowler",
+        "price": "₹12.50 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc484675"
+      },
+      {
+        "playerID": "KuldeepYadav_DelhiCapitals",
+        "name": "Kuldeep Yadav",
+        "team": "Delhi Capitals",
+        "role": "Bowler",
+        "price": "₹8.25 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff3419a9770abc484676"
+      }
+    ],
+    "createdAt": "2025-03-22T18:19:32.292Z",
+    "updatedAt": "2025-03-22T18:19:32.292Z",
+    "__v": 0
+  },
+  {
+    "_id": "67deff4019a9770abc484688",
+    "userId": "67dec479782d392e04f29e65",
+    "teamName": "Team 1",
+    "players": [
+      {
+        "playerID": "RuturajGaikwad_ChennaiSuperKings",
+        "name": "Ruturaj Gaikwad",
+        "team": "Chennai Super Kings",
+        "role": "Batter",
+        "price": "₹18 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc484689"
+      },
+      {
+        "playerID": "AxarPatel_DelhiCapitals",
+        "name": "Axar Patel",
+        "team": "Delhi Capitals",
+        "role": "Bowler",
+        "price": "₹16.50 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc48468a"
+      },
+      {
+        "playerID": "ShubmanGill_GujaratTitans",
+        "name": "Shubman Gill",
+        "team": "Gujarat Titans",
+        "role": "Batter",
+        "price": "₹16.50 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc48468b"
+      },
+      {
+        "playerID": "RinkuSingh_KolkataKnightRiders",
+        "name": "Rinku Singh",
+        "team": "Kolkata Knight Riders",
+        "role": "Batter",
+        "price": "₹13 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc48468c"
+      },
+      {
+        "playerID": "NicholasPooran_LucknowSuperGiants",
+        "name": "Nicholas Pooran",
+        "team": "Lucknow Super Giants",
+        "role": "Wicketkeeper/Batter",
+        "price": "₹21 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc48468d"
+      },
+      {
+        "playerID": "JaspritBumrah_MumbaiIndians",
+        "name": "Jasprit Bumrah",
+        "team": "Mumbai Indians",
+        "role": "Bowler",
+        "price": "₹18 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc48468e"
+      },
+      {
+        "playerID": "SamCurran_PunjabKings",
+        "name": "Sam Curran",
+        "team": "Punjab Kings",
+        "role": "All-rounder",
+        "price": "₹2.40 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc48468f"
+      },
+      {
+        "playerID": "SanjuSamson_RajasthanRoyals",
+        "name": "Sanju Samson",
+        "team": "Rajasthan Royals",
+        "role": "Batter/Wicketkeeper",
+        "price": "₹18 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc484690"
+      },
+      {
+        "playerID": "ViratKohli_RoyalChallengersBengaluru",
+        "name": "Virat Kohli",
+        "team": "Royal Challengers Bengaluru",
+        "role": "Batter",
+        "price": "₹21 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc484691"
+      },
+      {
+        "playerID": "HeinrichKlaasen_SunrisersHyderabad",
+        "name": "Heinrich Klaasen",
+        "team": "Sunrisers Hyderabad",
+        "role": "Batter",
+        "price": "₹23 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc484692"
+      },
+      {
+        "playerID": "RavindraJadeja_ChennaiSuperKings",
+        "name": "Ravindra Jadeja",
+        "team": "Chennai Super Kings",
+        "role": "All-rounder",
+        "price": "₹18 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc484693"
+      },
+      {
+        "playerID": "RashidKhan_GujaratTitans",
+        "name": "Rashid Khan",
+        "team": "Gujarat Titans",
+        "role": "Bowler",
+        "price": "₹18 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc484694"
+      },
+      {
+        "playerID": "DavidMiller_LucknowSuperGiants",
+        "name": "David Miller",
+        "team": "Lucknow Super Giants",
+        "role": "Batter",
+        "price": "₹7.50 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc484695"
+      },
+      {
+        "playerID": "TrentBoult_MumbaiIndians",
+        "name": "Trent Boult",
+        "team": "Mumbai Indians",
+        "role": "Bowler",
+        "price": "₹12.50 crore",
+        "type": "Overseas",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc484696"
+      },
+      {
+        "playerID": "KuldeepYadav_DelhiCapitals",
+        "name": "Kuldeep Yadav",
+        "team": "Delhi Capitals",
+        "role": "Bowler",
+        "price": "₹8.25 crore",
+        "type": "Domestic",
+        "status": "Capped",
+        "_id": "67deff4019a9770abc484697"
+      }
+    ],
+    "createdAt": "2025-03-22T18:19:44.826Z",
+    "updatedAt": "2025-03-22T18:19:44.826Z",
+    "__v": 0
+  }
+]
