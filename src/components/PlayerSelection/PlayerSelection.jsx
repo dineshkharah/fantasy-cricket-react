@@ -5,7 +5,7 @@ import PlayerFilters from "./PlayerFilters";
 const teamMapping = {
     "CSK": "Chennai Super Kings",
     "MI": "Mumbai Indians",
-    "RCB": "Royal Challengers Bangalore",
+    "RCB": "Royal Challengers Bengaluru",
     "KKR": "Kolkata Knight Riders",
     "SRH": "Sunrisers Hyderabad",
     "DC": "Delhi Capitals",

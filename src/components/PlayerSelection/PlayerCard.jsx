@@ -4,7 +4,7 @@ import React from "react";
 const teamShortForms = {
     "Chennai Super Kings": "CSK",
     "Mumbai Indians": "MI",
-    "Royal Challengers Bangalore": "RCB",
+    "Royal Challengers Bengaluru": "RCB",
     "Kolkata Knight Riders": "KKR",
     "Sunrisers Hyderabad": "SRH",
     "Delhi Capitals": "DC",
