@@ -1,36 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PlayerSelection from "../components/PlayerSelection/PlayerSelection";
 import TeamSelection from "../components/TeamSelection/TeamSelection";
 
 const TeamPage = () => {
-    // State to manage selected players
     const [selectedPlayers, setSelectedPlayers] = useState([]);
 
-    // Function to handle player selection
-    const handleSelectPlayer = (player) => {
-        if (selectedPlayers.some((p) => p.id === player.id)) {
-            // Remove player if already selected
-            setSelectedPlayers(selectedPlayers.filter((p) => p.id !== player.id));
-        } else if (selectedPlayers.length < 15) {
-            // Add player if not already selected (limit: 15)
-            setSelectedPlayers([...selectedPlayers, player]);
-        }
+    const handleSelectPlayer = (newPlayers) => {
+        setSelectedPlayers((prevSelected) => {
+            let updatedPlayers = [...prevSelected];
+
+            newPlayers.forEach((player) => {
+                const isAlreadySelected = updatedPlayers.some((p) => p._id === player._id);
+
+                if (isAlreadySelected) {
+                    // Remove player if they already exist
+                    updatedPlayers = updatedPlayers.filter((p) => p._id !== player._id);
+                } else if (updatedPlayers.length < 15) {
+                    // Add player if limit is not reached
+                    updatedPlayers.push(player);
+                }
+            });
+
+            return updatedPlayers;
+        });
     };
+
+
+    // 🛠 Log updated selectedPlayers when state changes
+    useEffect(() => {
+        console.log("TeamPage rendered. Current selectedPlayers:", selectedPlayers);
+    }, [selectedPlayers]);
+
 
     return (
         <div className="flex w-full h-screen gap-4 p-4 overflow-hidden">
-            {/* Left: Team Selection */}
             <div className="w-1/2 border border-gray-600 rounded-2xl p-4 flex flex-col overflow-hidden">
-                <PlayerSelection onSelectPlayer={handleSelectPlayer} selectedPlayers={selectedPlayers} />
+                <PlayerSelection onPlayerSelect={handleSelectPlayer} selectedPlayers={selectedPlayers} />
             </div>
-
-            {/* Right: Player Selection */}
             <div className="w-1/2 border border-gray-600 rounded-2xl p-4 flex flex-col overflow-hidden">
                 <TeamSelection selectedPlayers={selectedPlayers} />
             </div>
         </div>
     );
-
 };
 
 export default TeamPage;
