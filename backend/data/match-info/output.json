@@ -1,0 +1,31 @@
+{
+    "match_info": {
+        "teams": [
+            "InfoMatchDC",
+            "PBKS"
+        ],
+        "date": "Sunday, September 20, 2020",
+        "time": "7:30 PM",
+        "venue": "Dubai International Cricket Stadium, Dubai",
+        "umpires": [
+            "Nitin Menon",
+            "Anil Chaudhary"
+        ],
+        "third_umpire": "Paul Reiffel",
+        "match_referee": "Javagal Srinath"
+    },
+    "innings": [
+        {
+            "team": "Match tied (Delhi Capitals won the Super Over)\nDelhi Capitals",
+            "score": "157-8",
+            "batting": [],
+            "bowling": []
+        },
+        {
+            "team": "OMRWNBWDECOCottrell40242016.00Shami40153113.80Chris Jordan405601314.00K Gowtham40390009.80Ravi Bishnoi40221015.50PowerplaysOversRunsMandatory0.1-623\nKings XI Punjab",
+            "score": "157-8",
+            "batting": [],
+            "bowling": []
+        }
+    ]
+}
