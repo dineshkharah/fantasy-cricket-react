@@ -1,6 +1,5 @@
 const express = require("express");
 const {
-    fetchMatchStats,
     saveMatchStats,
     getMatchById,
     getAllMatches
@@ -8,12 +7,10 @@ const {
 
 const router = express.Router();
 
-router.get("/fetch/:matchId", fetchMatchStats);
-
 router.post("/save", saveMatchStats);
 
-//Get match data from the database
-router.get("/:matchId", getMatchById);
+router.get("/:matchTitle", getMatchById);
+
 router.get("/", getAllMatches);
 
 module.exports = router;
