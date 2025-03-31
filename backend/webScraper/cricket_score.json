@@ -1,0 +1,358 @@
+{
+  "metadata": {
+    "title": "Rajasthan Royals vs Chennai Super Kings, 11th Match - Live Cricket Score, Commentary",
+    "series": "Indian Premier League 2025",
+    "venue": "Barsapara Cricket Stadium, Guwahati",
+    "dateTime": "Mar 30, 07:30 PM LOCAL",
+    "matchSummary": "Rajasthan Royals won by 6 runs"
+  },
+  "innings": [
+    {
+      "team": "Rajasthan Royals Innings\n182-9 (20 Ov)",
+      "batting": [
+        {
+          "playerName": "Yashasvi Jaiswal",
+          "how_out": {
+            "c": "Ashwin",
+            "b": "Khaleel Ahmed"
+          },
+          "runs": "4",
+          "balls": "3",
+          "fours": "1",
+          "sixes": "0",
+          "strikeRate": "133.33"
+        },
+        {
+          "playerName": "Samson",
+          "how_out": {
+            "c": "Rachin Ravindra",
+            "b": "Noor Ahmad"
+          },
+          "runs": "20",
+          "balls": "16",
+          "fours": "1",
+          "sixes": "1",
+          "strikeRate": "125.00"
+        },
+        {
+          "playerName": "Nitish Rana",
+          "how_out": {
+            "st": "Dhoni",
+            "b": "Ashwin"
+          },
+          "runs": "81",
+          "balls": "36",
+          "fours": "10",
+          "sixes": "5",
+          "strikeRate": "225.00"
+        },
+        {
+          "playerName": "Riyan Parag (c)",
+          "how_out": {
+            "b": "Matheesha Pathirana"
+          },
+          "runs": "37",
+          "balls": "28",
+          "fours": "2",
+          "sixes": "2",
+          "strikeRate": "132.14"
+        },
+        {
+          "playerName": "Dhruv Jurel (wk)",
+          "how_out": {
+            "c": "Matheesha Pathirana",
+            "b": "Noor Ahmad"
+          },
+          "runs": "3",
+          "balls": "7",
+          "fours": "0",
+          "sixes": "0",
+          "strikeRate": "42.86"
+        },
+        {
+          "playerName": "W Hasaranga",
+          "how_out": {
+            "c": "Vijay Shankar",
+            "b": "Ravindra Jadeja"
+          },
+          "runs": "4",
+          "balls": "5",
+          "fours": "0",
+          "sixes": "0",
+          "strikeRate": "80.00"
+        },
+        {
+          "playerName": "Hetmyer",
+          "how_out": {
+            "c": "Ashwin",
+            "b": "Matheesha Pathirana"
+          },
+          "runs": "19",
+          "balls": "16",
+          "fours": "1",
+          "sixes": "1",
+          "strikeRate": "118.75"
+        },
+        {
+          "playerName": "Jofra Archer",
+          "how_out": {
+            "c": "Ruturaj Gaikwad",
+            "b": "Khaleel Ahmed"
+          },
+          "runs": "0",
+          "balls": "2",
+          "fours": "0",
+          "sixes": "0",
+          "strikeRate": "0.00"
+        },
+        {
+          "playerName": "Kumar Kartikeya",
+          "how_out": {
+            "run out": "Khaleel Ahmed"
+          },
+          "runs": "1",
+          "balls": "1",
+          "fours": "0",
+          "sixes": "0",
+          "strikeRate": "100.00"
+        },
+        {
+          "playerName": "M Theekshana",
+          "how_out": "not out",
+          "runs": "2",
+          "balls": "4",
+          "fours": "0",
+          "sixes": "0",
+          "strikeRate": "50.00"
+        },
+        {
+          "playerName": "Tushar Deshpande",
+          "how_out": "not out",
+          "runs": "1",
+          "balls": "2",
+          "fours": "0",
+          "sixes": "0",
+          "strikeRate": "50.00"
+        }
+      ],
+      "bowling": [
+        {
+          "playerName": "Khaleel Ahmed",
+          "overs": "4",
+          "maidens": "0",
+          "runsConceded": "38",
+          "wickets": "2",
+          "noBall": "0",
+          "wide": "1",
+          "economy": "9.50"
+        },
+        {
+          "playerName": "Jamie Overton",
+          "overs": "2",
+          "maidens": "0",
+          "runsConceded": "30",
+          "wickets": "0",
+          "noBall": "0",
+          "wide": "0",
+          "economy": "15.00"
+        },
+        {
+          "playerName": "Ashwin",
+          "overs": "4",
+          "maidens": "0",
+          "runsConceded": "46",
+          "wickets": "1",
+          "noBall": "0",
+          "wide": "1",
+          "economy": "11.50"
+        },
+        {
+          "playerName": "Noor Ahmad",
+          "overs": "4",
+          "maidens": "0",
+          "runsConceded": "28",
+          "wickets": "2",
+          "noBall": "0",
+          "wide": "1",
+          "economy": "7.00"
+        },
+        {
+          "playerName": "Matheesha Pathirana",
+          "overs": "4",
+          "maidens": "0",
+          "runsConceded": "28",
+          "wickets": "2",
+          "noBall": "0",
+          "wide": "5",
+          "economy": "7.00"
+        },
+        {
+          "playerName": "Ravindra Jadeja",
+          "overs": "2",
+          "maidens": "0",
+          "runsConceded": "10",
+          "wickets": "1",
+          "noBall": "0",
+          "wide": "0",
+          "economy": "5.00"
+        }
+      ]
+    },
+    {
+      "team": "Chennai Super Kings Innings\n176-6 (20 Ov)",
+      "batting": [
+        {
+          "playerName": "Rachin Ravindra",
+          "how_out": {
+            "c": "Dhruv Jurel",
+            "b": "Jofra Archer"
+          },
+          "runs": "0",
+          "balls": "4",
+          "fours": "0",
+          "sixes": "0",
+          "strikeRate": "0.00"
+        },
+        {
+          "playerName": "Rahul Tripathi",
+          "how_out": {
+            "c": "Hetmyer",
+            "b": "W Hasaranga"
+          },
+          "runs": "23",
+          "balls": "19",
+          "fours": "3",
+          "sixes": "1",
+          "strikeRate": "121.05"
+        },
+        {
+          "playerName": "Ruturaj Gaikwad (c)",
+          "how_out": {
+            "c": "Yashasvi Jaiswal",
+            "b": "W Hasaranga"
+          },
+          "runs": "63",
+          "balls": "44",
+          "fours": "7",
+          "sixes": "1",
+          "strikeRate": "143.18"
+        },
+        {
+          "playerName": "Shivam Dube",
+          "how_out": {
+            "c": "Riyan Parag",
+            "b": "W Hasaranga"
+          },
+          "runs": "18",
+          "balls": "10",
+          "fours": "1",
+          "sixes": "2",
+          "strikeRate": "180.00"
+        },
+        {
+          "playerName": "Vijay Shankar",
+          "how_out": {
+            "b": "W Hasaranga"
+          },
+          "runs": "9",
+          "balls": "6",
+          "fours": "0",
+          "sixes": "1",
+          "strikeRate": "150.00"
+        },
+        {
+          "playerName": "Ravindra Jadeja",
+          "how_out": "not out",
+          "runs": "32",
+          "balls": "22",
+          "fours": "2",
+          "sixes": "1",
+          "strikeRate": "145.45"
+        },
+        {
+          "playerName": "MS Dhoni (wk)",
+          "how_out": {
+            "c": "Hetmyer",
+            "b": "Sandeep Sharma"
+          },
+          "runs": "16",
+          "balls": "11",
+          "fours": "1",
+          "sixes": "1",
+          "strikeRate": "145.45"
+        },
+        {
+          "playerName": "Jamie Overton",
+          "how_out": "not out",
+          "runs": "11",
+          "balls": "4",
+          "fours": "0",
+          "sixes": "1",
+          "strikeRate": "275.00"
+        }
+      ],
+      "bowling": [
+        {
+          "playerName": "Jofra Archer",
+          "overs": "3",
+          "maidens": "1",
+          "runsConceded": "13",
+          "wickets": "1",
+          "noBall": "0",
+          "wide": "0",
+          "economy": "4.30"
+        },
+        {
+          "playerName": "Tushar Deshpande",
+          "overs": "4",
+          "maidens": "0",
+          "runsConceded": "45",
+          "wickets": "0",
+          "noBall": "0",
+          "wide": "2",
+          "economy": "11.20"
+        },
+        {
+          "playerName": "Sandeep Sharma",
+          "overs": "4",
+          "maidens": "0",
+          "runsConceded": "42",
+          "wickets": "1",
+          "noBall": "0",
+          "wide": "1",
+          "economy": "10.50"
+        },
+        {
+          "playerName": "Maheesh Theekshana",
+          "overs": "4",
+          "maidens": "0",
+          "runsConceded": "30",
+          "wickets": "0",
+          "noBall": "0",
+          "wide": "0",
+          "economy": "7.50"
+        },
+        {
+          "playerName": "Wanindu Hasaranga",
+          "overs": "4",
+          "maidens": "0",
+          "runsConceded": "35",
+          "wickets": "4",
+          "noBall": "0",
+          "wide": "0",
+          "economy": "8.80"
+        },
+        {
+          "playerName": "Kumar Kartikeya",
+          "overs": "1",
+          "maidens": "0",
+          "runsConceded": "10",
+          "wickets": "0",
+          "noBall": "0",
+          "wide": "0",
+          "economy": "10.00"
+        }
+      ]
+    }
+  ]
+}
