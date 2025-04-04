@@ -7,7 +7,8 @@ const playerPerformanceSchema = new mongoose.Schema({
     fours: { type: Number, default: 0 },
     sixes: { type: Number, default: 0 },
     strikeRate: { type: Number, default: 0 },
-    how_out: { type: mongoose.Schema.Types.Mixed, default: {} }  // Stores dismissal details
+    how_out: { type: mongoose.Schema.Types.Mixed, default: {} },  // Stores dismissal details
+    fantasyPoints: { type: Number, default: 0 }
 });
 
 const bowlingPerformanceSchema = new mongoose.Schema({
@@ -18,7 +19,8 @@ const bowlingPerformanceSchema = new mongoose.Schema({
     wickets: { type: Number, default: 0 },
     noBall: { type: Number, default: 0 },
     wide: { type: Number, default: 0 },
-    economy: { type: Number, default: 0 }
+    economy: { type: Number, default: 0 },
+    fantasyPoints: { type: Number, default: 0 }
 });
 
 const inningsSchema = new mongoose.Schema({

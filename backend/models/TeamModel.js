@@ -14,6 +14,8 @@ const teamSchema = new mongoose.Schema({
     userId: { type: String, required: true },
     teamName: { type: String, required: true },
     players: { type: [playerSchema], required: true },
+    captainID: { type: String, required: true },
+    viceCaptainID: { type: String, required: true }
 }, { timestamps: true });
 
 const Team = mongoose.model("Team", teamSchema);

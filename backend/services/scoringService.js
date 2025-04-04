@@ -1,19 +1,36 @@
 const calculatePlayerFantasyPoints = (playerStats, isCaptain, isViceCaptain, isUncapped) => {
     let points = 0;
 
+    const runs = Number(playerStats.runs) || 0;
+    const ballsFaced = Number(playerStats.ballsFaced) || 0;
+    const fours = Number(playerStats.fours) || 0;
+    const sixes = Number(playerStats.sixes) || 0;
+    const strikeRate = Number(playerStats.strikeRate) || 0;
+    const wickets = Number(playerStats.wickets) || 0;
+    const lbwBowled = Number(playerStats.lbwBowled) || 0;
+    const dotBalls = Number(playerStats.dotBalls) || 0;
+    const maidenOvers = Number(playerStats.maidenOvers) || 0;
+    const oversBowled = Number(playerStats.oversBowled) || 0;
+    const runsConceded = Number(playerStats.runsConceded) || 0;
+    const economy = Number(playerStats.economy) || 0;
+    const catches = Number(playerStats.catches) || 0;
+    const stumpings = Number(playerStats.stumpings) || 0;
+    const directHitRunOuts = Number(playerStats.directHitRunOuts) || 0;
+    const assistedRunOuts = Number(playerStats.assistedRunOuts) || 0;
+    const dismissed = Boolean(playerStats.dismissed);
+
     // 🏏 Batting Points
-    points += playerStats.runs;
-    points += playerStats.fours * 4;
-    points += playerStats.sixes * 6;
-    if (playerStats.runs >= 25) points += 4;
-    if (playerStats.runs >= 50) points += 8;
-    if (playerStats.runs >= 75) points += 12;
-    if (playerStats.runs >= 100) points += 16;
-    if (playerStats.runs === 0 && playerStats.dismissed) points -= 2;
+    points += runs;
+    points += fours * 4;
+    points += sixes * 6;
+    if (runs >= 25) points += 4;
+    if (runs >= 50) points += 8;
+    if (runs >= 75) points += 12;
+    if (runs >= 100) points += 16;
+    if (runs === 0 && dismissed) points -= 2;
 
     // Strike Rate Bonus/Penalty
-    if (playerStats.ballsFaced >= 10) {
-        const strikeRate = (playerStats.runs / playerStats.ballsFaced) * 100;
+    if (ballsFaced >= 10) {
         if (strikeRate > 170) points += 6;
         else if (strikeRate > 150) points += 4;
         else if (strikeRate >= 130) points += 2;
@@ -23,38 +40,45 @@ const calculatePlayerFantasyPoints = (playerStats, isCaptain, isViceCaptain, isU
     }
 
     // 🎯 Bowling Points
-    points += playerStats.wickets * 25;
-    points += playerStats.lbwBowled * 8;
-    points += playerStats.dotBalls;
-    points += playerStats.maidenOvers * 12;
-    if (playerStats.wickets >= 3) points += 4;
-    if (playerStats.wickets >= 4) points += 8;
-    if (playerStats.wickets >= 5) points += 12;
+    points += wickets * 25;
+    points += lbwBowled * 8;
+    points += dotBalls;
+    points += maidenOvers * 12;
+    if (wickets >= 3) points += 4;
+    if (wickets >= 4) points += 8;
+    if (wickets >= 5) points += 12;
 
     // Economy Rate Bonus/Penalty
-    if (playerStats.oversBowled >= 2) {
-        const economyRate = playerStats.runsConceded / playerStats.oversBowled;
-        if (economyRate < 5) points += 6;
-        else if (economyRate < 6) points += 4;
-        else if (economyRate <= 7) points += 2;
-        else if (economyRate >= 10 && economyRate <= 11) points -= 2;
-        else if (economyRate > 11 && economyRate <= 12) points -= 4;
-        else if (economyRate > 12) points -= 6;
+    if (oversBowled >= 2) {
+        if (economy < 5) points += 6;
+        else if (economy < 6) points += 4;
+        else if (economy <= 7) points += 2;
+        else if (economy >= 10 && economy <= 11) points -= 2;
+        else if (economy > 11 && economy <= 12) points -= 4;
+        else if (economy > 12) points -= 6;
     }
 
     // 🧤 Fielding Points
-    points += playerStats.catches * 8;
-    if (playerStats.catches >= 3) points += 4;
-    points += playerStats.stumpings * 12;
-    points += playerStats.directHitRunOuts * 12;
-    points += playerStats.assistedRunOuts * 6;
+    points += catches * 8;
+    if (catches >= 3) points += 4;
+    points += stumpings * 12;
+    points += directHitRunOuts * 12;
+    points += assistedRunOuts * 6;
 
     // 🏆 Captain, Vice-Captain, Uncapped Multipliers
     if (isCaptain) points *= 3;
     else if (isViceCaptain) points *= 2;
     else if (isUncapped) points *= 1.5;
 
+    if (isNaN(points)) {
+        console.warn("⚠️ Warning: NaN detected in fantasy points calculation. Defaulting to 0.");
+        points = 0;
+    }
+
     return points;
 };
 
-module.exports = { calculatePlayerFantasyPoints };
+
+module.exports = {
+    calculatePlayerFantasyPoints
+};

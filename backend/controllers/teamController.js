@@ -9,10 +9,10 @@ const createTeam = async (req, res) => {
             return res.status(401).json({ message: "Unauthorized: Invalid token" });
         }
 
-        const { teamName, players } = req.body;
+        const { teamName, players, captainID, viceCaptainID } = req.body;
         const userId = req.user.userId; // ✅ Corrected from `req.user.id`
 
-        if (!teamName || !players) {
+        if (!teamName || !players || !captainID || !viceCaptainID) {
             return res.status(400).json({ message: "Missing required fields." });
         }
 
@@ -27,6 +27,17 @@ const createTeam = async (req, res) => {
             return res.status(400).json({ message: `Each team must have exactly 15 players. You provided ${players.length}` });
         }
 
+        // Ensure captain and vice-captain are in the selected team
+        const playerIDs = players.map(player => player.playerID);
+        if (!playerIDs.includes(captainID) || !playerIDs.includes(viceCaptainID)) {
+            return res.status(400).json({ message: "Captain and Vice-Captain must be part of the selected team." });
+        }
+
+        // Prevent captain and vice-captain from being the same player
+        if (captainID === viceCaptainID) {
+            return res.status(400).json({ message: "Captain and Vice-Captain must be different players." });
+        }
+
         // Enforce IPL team diversity
         const teamSet = new Set(players.map(player => player.team));
         if (teamSet.size < 6) {
@@ -34,13 +45,13 @@ const createTeam = async (req, res) => {
         }
 
         // Prevent duplicate players
-        const playerIDs = new Set(players.map(player => player.playerID));
-        if (playerIDs.size !== players.length) {
+        const playerIDsSet = new Set(players.map(player => player.playerID));
+        if (playerIDsSet.size !== players.length) {
             return res.status(400).json({ message: "Duplicate players found in the team." });
         }
 
         // Save the new team
-        const newTeam = new Team({ teamName, players, userId });
+        const newTeam = new Team({ teamName, players, userId, captainID, viceCaptainID });
         await newTeam.save();
         res.status(201).json(newTeam);
     } catch (error) {
