@@ -16,13 +16,12 @@ const updateFantasyPoints = async (matchId) => {
         console.log(`Searching for match with title or ID: ${matchId}`);
 
         const isObjectId = mongoose.Types.ObjectId.isValid(matchId);
-        if (!mongoose.Types.ObjectId.isValid(matchId)) {
+        if (!isObjectId) {
             console.log(`Invalid Match ID: ${matchId}`);
             return;
         }
 
         const match = await Match.findById(matchId);
-
 
         if (!match) {
             return res.status(404).json({ message: `Match '${matchId}' not found in database.` });
@@ -57,7 +56,10 @@ const updateFantasyPoints = async (matchId) => {
 
                 const isUncapped = player.status === "Uncapped";
                 const fantasyPoints = calculatePlayerFantasyPoints(playerStats, false, false, isUncapped);
-                console.log(`🟢 Player: ${player.name} - Fantasy Points: ${fantasyPoints}`);
+                console.log(
+                    ` Batting | Player: ${player.name} | Runs: ${playerStats.runs} | Fours: ${playerStats.fours} | Sixes: ${playerStats.sixes} | ` +
+                    `Dismissed: ${playerStats.dismissed} | Fantasy Points: ${fantasyPoints}`
+                );
 
                 batting.fantasyPoints = isNaN(fantasyPoints) ? 0 : fantasyPoints;
                 playerFantasyPoints[player.playerID] = (playerFantasyPoints[player.playerID] || 0) + fantasyPoints;
@@ -84,14 +86,56 @@ const updateFantasyPoints = async (matchId) => {
 
                 const isUncapped = player.status === "Uncapped";
                 const fantasyPoints = calculatePlayerFantasyPoints(playerStats, false, false, isUncapped);
-                console.log(`🟢 Player: ${player.name} - Fantasy Points: ${fantasyPoints}`);
-
+                console.log(
+                    ` Bowling | Player: ${player.name} | Wickets: ${playerStats.wickets} | Dot Balls: ${playerStats.dotBalls} | ` +
+                    `Maidens: ${playerStats.maidenOvers} | Economy: ${playerStats.economy} | Fantasy Points: ${fantasyPoints}`
+                );
                 bowling.fantasyPoints = fantasyPoints;
                 playerFantasyPoints[player.playerID] = (playerFantasyPoints[player.playerID] || 0) + fantasyPoints;
             }
         }
 
-        // Step 3: Update Fantasy Points for Players in the Database
+        // Step 3: Process Fielding Stats
+        for (let inning of match.innings) {
+            for (let batting of inning.batting) {
+                if (!batting.how_out) continue; // Skip if no dismissal info
+
+                // Catch
+                if (batting.how_out.c) {
+                    const fielderName = batting.how_out.c;
+                    const fielder = await Player.findOne({ name: new RegExp(`^${fielderName}$`, "i") });
+                    if (fielder) {
+                        const fieldingPoints = calculatePlayerFantasyPoints({ catches: 1 }, false, false, fielder.status === "Uncapped");
+                        console.log(` Fielding | Player: ${fielder.name} | Caught Out | Fantasy Points: ${fieldingPoints}`);
+                        playerFantasyPoints[fielder.playerID] = (playerFantasyPoints[fielder.playerID] || 0) + fieldingPoints;
+                    }
+                }
+
+                // Stumping
+                if (batting.how_out.st) {
+                    const keeperName = batting.how_out.st;
+                    const keeper = await Player.findOne({ name: new RegExp(`^${keeperName}$`, "i") });
+                    if (keeper) {
+                        const fieldingPoints = calculatePlayerFantasyPoints({ stumpings: 1 }, false, false, keeper.status === "Uncapped");
+                        console.log(` Fielding | Player: ${keeper.name} | Stumping | Fantasy Points: ${fieldingPoints}`);
+                        playerFantasyPoints[keeper.playerID] = (playerFantasyPoints[keeper.playerID] || 0) + fieldingPoints;
+                    }
+                }
+
+                // Run Out
+                if (batting.how_out["run out"]) {
+                    const fielderName = batting.how_out["run out"];
+                    const fielder = await Player.findOne({ name: new RegExp(`^${fielderName}$`, "i") });
+                    if (fielder) {
+                        const fieldingPoints = calculatePlayerFantasyPoints({ runOuts: 1 }, false, false, fielder.status === "Uncapped");
+                        console.log(` Fielding | Player: ${fielder.name} | Run Out | Fantasy Points: ${fieldingPoints}`);
+                        playerFantasyPoints[fielder.playerID] = (playerFantasyPoints[fielder.playerID] || 0) + fieldingPoints;
+                    }
+                }
+            }
+        }
+
+        // Step 4: Update Fantasy Points for Players in the Database
         for (const [playerId, points] of Object.entries(playerFantasyPoints)) {
             await Player.findOneAndUpdate(
                 { playerID: playerId },
@@ -102,34 +146,38 @@ const updateFantasyPoints = async (matchId) => {
 
         await match.save(); // Save updated match
 
-        // Step 4: Update Fantasy Points for Teams (Only for Teams Created Before Match)
+        // Step 5: Update Fantasy Points for Teams (Only for Teams Created Before Match)
         const teams = await Team.find({ createdAt: { $lte: match.createdAt } });
         console.log(`Teams found before match: ${teams.length}`);
 
         for (let team of teams) {
+            if (team.processedMatches && team.processedMatches.includes(match._id)) {
+                console.log(`⏭️ Skipping ${team.teamName}, already processed match ${matchId}`);
+                continue;
+            }
+
             let totalTeamPoints = 0;
 
             for (let teamPlayer of team.players) {
                 const player = await Player.findOne({ playerID: teamPlayer.playerID });
                 if (!player) continue;
 
-                let isCaptain = player.playerID === team.captainID;
-                let isViceCaptain = player.playerID === team.viceCaptainID;
-                let isUncapped = player.status === "Uncapped";
-
                 let playerFantasyPointsValue = playerFantasyPoints[player.playerID] || 0;
 
-                // Apply captain/vice-captain multipliers
-                if (isCaptain) playerFantasyPointsValue *= 2;
-                if (isViceCaptain) playerFantasyPointsValue *= 1.5;
-
                 totalTeamPoints += playerFantasyPointsValue;
+
+                console.log(
+                    `🟢 Team: ${team.teamName} | Player: ${player.name} | Points: ${playerFantasyPointsValue}`
+                );
             }
 
-            await Team.findByIdAndUpdate(team._id, { $inc: { totalPoints: totalTeamPoints } }, { new: true });
+            await Team.findByIdAndUpdate(team._id, {
+                $inc: { totalPoints: totalTeamPoints },
+                $addToSet: { processedMatches: match._id }
+            }, { new: true });
+            console.log(`Updated Team: ${team.teamName} | Total Points Added This Match: ${totalTeamPoints}`);
         }
 
-        // Mark Match as Processed
         await Match.findByIdAndUpdate(match._id, { fantasyPointsProcessed: true }, { new: true });
 
         console.log(`Fantasy points updated for match ${matchId}`);
