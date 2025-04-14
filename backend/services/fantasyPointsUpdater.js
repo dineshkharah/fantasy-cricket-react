@@ -241,8 +241,10 @@ const updateFantasyPoints = async (matchId) => {
 
             await Team.findByIdAndUpdate(team._id, {
                 $inc: { totalPoints: totalTeamPoints },
-                $addToSet: { processedMatches: match._id }
+                $addToSet: { processedMatches: match._id },
+                $push: { matchPoints: { matchId: match._id, points: totalTeamPoints } }
             }, { new: true });
+
 
             console.log(` Updated Team: ${team.teamName} | Points Added: ${totalTeamPoints}`);
         }

@@ -18,6 +18,12 @@ const teamSchema = new mongoose.Schema({
     viceCaptainID: { type: String, required: true },
     totalPoints: { type: Number, default: 0 },
     processedMatches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Match' }],
+    matchPoints: [
+        {
+            matchId: { type: mongoose.Schema.Types.ObjectId, ref: 'Match' },
+            points: { type: Number, default: 0 }
+        }
+    ],
 }, { timestamps: true });
 
 const Team = mongoose.model("Team", teamSchema);
