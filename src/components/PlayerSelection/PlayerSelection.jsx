@@ -74,12 +74,19 @@ const PlayerSelection = ({ onPlayerSelect, selectedPlayers }) => {
 
     // Handle temporary player selection
     const handleTempSelect = (player) => {
-        if (selectedTempPlayers.some(p => p.playerID === player.playerID)) {
-            // Remove from temp selection
+        const totalSelected = selectedPlayers.length + selectedTempPlayers.length;
+
+        const isAlreadySelected =
+            selectedTempPlayers.some(p => p.playerID === player.playerID) ||
+            selectedPlayers.some(p => p.playerID === player.playerID);
+
+        if (isAlreadySelected) {
+            // Deselect if it was only in temp
             setSelectedTempPlayers(selectedTempPlayers.filter(p => p.playerID !== player.playerID));
-        } else if (selectedTempPlayers.length < 15) {
-            // Add to temp selection (limit 15)
+        } else if (totalSelected < 15) {
             setSelectedTempPlayers([...selectedTempPlayers, player]);
+        } else {
+            alert("You can only select 15 players in total.");
         }
     };
 
