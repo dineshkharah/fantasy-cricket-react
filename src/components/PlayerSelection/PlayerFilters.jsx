@@ -2,7 +2,12 @@ import React from "react";
 
 const PlayerFilters = ({ setSelectedTeam, setSelectedRole, setSearchQuery }) => {
     const teams = ["MI", "CSK", "RCB", "KKR", "SRH", "DC", "RR", "PBKS", "LSG", "GT"];
-    const roles = ["Batter", "Bowler", "All-Rounder", "Wicket-Keeper"];
+    const roles = [
+        { label: "Batter", value: "Batter" },
+        { label: "Bowler", value: "Bowler" },
+        { label: "All-Rounder", value: "allRounder" },
+        { label: "Wicket-Keeper", value: "wicketKeeper" },
+    ];
 
     return (
         <div className="flex flex-wrap gap-3 mb-4 justify-center">
@@ -25,10 +30,8 @@ const PlayerFilters = ({ setSelectedTeam, setSelectedRole, setSearchQuery }) => 
                 onChange={(e) => setSelectedRole(e.target.value)}
             >
                 <option value="">All Roles</option>
-                {roles.map((role) => (
-                    <option key={role} value={role}>
-                        {role}
-                    </option>
+                {roles.map(({ label, value }) => (
+                    <option key={value} value={value}>{label}</option>
                 ))}
             </select>
 

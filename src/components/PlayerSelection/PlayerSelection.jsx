@@ -54,8 +54,20 @@ const PlayerSelection = ({ onPlayerSelect, selectedPlayers }) => {
             updatedPlayers = updatedPlayers.filter(player => player.team === fullTeamName);
         }
         if (selectedRole) {
-            updatedPlayers = updatedPlayers.filter(player => player.role === selectedRole);
+            updatedPlayers = updatedPlayers.filter(player => {
+                if (selectedRole === "allRounder") {
+                    return player.role === "All-rounder";
+                } else if (selectedRole === "wicketKeeper") {
+                    return (
+                        player.role === "Batter/Wicketkeeper" ||
+                        player.role === "Wicketkeeper/Batter"
+                    );
+                } else {
+                    return player.role === selectedRole;
+                }
+            });
         }
+
 
         setFilteredPlayers(updatedPlayers);
     }, [searchQuery, selectedTeam, selectedRole, players]);
