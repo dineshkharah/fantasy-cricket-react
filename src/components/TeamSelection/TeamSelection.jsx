@@ -49,14 +49,19 @@ const TeamSelection = ({ selectedPlayers }) => {
     useEffect(() => {
         if (!selectedTeam || selectedPlayers.length === 0) return;
 
+        // Don't update if team already saved (has _id from DB and captainID)
+        if (selectedTeam._id && selectedTeam._id.toString().startsWith("temp") === false && captainID && viceCaptainID) {
+            return;
+        }
+
         setConfirmedPlayers((prevConfirmed) => {
             const newSelections = selectedPlayers.filter(
                 (player) => !prevConfirmed.some((p) => p._id === player._id)
             );
-
             return [...prevConfirmed, ...newSelections];
         });
-    }, [selectedPlayers, selectedTeam]);
+    }, [selectedPlayers, selectedTeam, captainID, viceCaptainID]);
+
 
     const handleCreateNewTeam = () => {
         if (teams.length >= 3) return;
