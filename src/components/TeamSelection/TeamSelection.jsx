@@ -6,26 +6,24 @@ const TeamSelection = ({ selectedPlayers }) => {
     const [teams, setTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState(null);
     const [confirmedPlayers, setConfirmedPlayers] = useState([]);
+    const [showCaptainModal, setShowCaptainModal] = useState(false);
+    const [captainID, setCaptainID] = useState(null);
+    const [viceCaptainID, setViceCaptainID] = useState(null);
+    const [selectionStep, setSelectionStep] = useState("captain");
 
-    // 🛠 Fetch teams from the backend
     useEffect(() => {
         const fetchTeamData = async () => {
             try {
                 const token = localStorage.getItem("token");
-                if (!token) {
-                    console.error("Token missing. User might not be logged in.");
-                    return;
-                }
+                if (!token) return;
 
                 const res = await axios.get("http://localhost:5000/api/v1/teams/", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
                 setTeams(res.data);
-
-                // ✅ Auto-select the last created team OR default to Team 1
                 if (res.data.length > 0) {
-                    setSelectedTeam(res.data[res.data.length - 1]); // Always select the latest team
+                    setSelectedTeam(res.data[res.data.length - 1]);
                 }
             } catch (error) {
                 console.error("Error fetching team data:", error);
@@ -35,14 +33,19 @@ const TeamSelection = ({ selectedPlayers }) => {
         fetchTeamData();
     }, []);
 
-    // ✅ Reset `confirmedPlayers` when switching teams
     useEffect(() => {
         if (selectedTeam) {
             setConfirmedPlayers(selectedTeam.players || []);
         }
     }, [selectedTeam]);
 
-    // ✅ Ensure `selectedPlayers` are added correctly to the **currently selected team**
+    useEffect(() => {
+        if (selectedTeam) {
+            setCaptainID(selectedTeam.captainID || null);
+            setViceCaptainID(selectedTeam.viceCaptainID || null);
+        }
+    }, [selectedTeam]);
+
     useEffect(() => {
         if (!selectedTeam || selectedPlayers.length === 0) return;
 
@@ -51,60 +54,79 @@ const TeamSelection = ({ selectedPlayers }) => {
                 (player) => !prevConfirmed.some((p) => p._id === player._id)
             );
 
-            return [...prevConfirmed, ...newSelections]; // ✅ Merge, avoiding duplicates
+            return [...prevConfirmed, ...newSelections];
         });
     }, [selectedPlayers, selectedTeam]);
 
     const handleCreateNewTeam = () => {
-        if (teams.length >= 3) return; // Restrict to max 3 teams
+        if (teams.length >= 3) return;
 
-        // ✅ Create a blank new team in frontend before API call
         const newTeam = {
-            _id: `temp-${Date.now()}`, // Temporary ID for rendering
+            _id: `temp-${Date.now()}`,
             name: `Team ${teams.length + 1}`,
             players: [],
         };
 
         setTeams([...teams, newTeam]);
         setSelectedTeam(newTeam);
-        setConfirmedPlayers([]); // Reset player selection
+        setConfirmedPlayers([]);
     };
 
     const handleConfirmTeam = async () => {
-        if (confirmedPlayers.length !== 15) return;
+        if (confirmedPlayers.length !== 15 || !captainID || !viceCaptainID) return;
 
         try {
             const token = localStorage.getItem("token");
             const res = await axios.post(
                 "http://localhost:5000/api/v1/teams/create",
-                { teamName: selectedTeam.name, players: confirmedPlayers },
+                {
+                    teamName: selectedTeam.name,
+                    players: confirmedPlayers,
+                    captainID,
+                    viceCaptainID,
+                },
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
             );
 
             const newTeam = res.data;
-
-            // ✅ Replace temporary team with backend response
             setTeams(teams.map(team => (team._id === selectedTeam._id ? newTeam : team)));
             setSelectedTeam(newTeam);
-            setConfirmedPlayers([]); // ✅ Reset after saving
+            setConfirmedPlayers([]);
+            setCaptainID(null);
+            setViceCaptainID(null);
         } catch (error) {
             console.error("Error saving team:", error);
         }
+    };
+
+    const handlePlayerClickForCaptainVC = (player) => {
+        if (selectionStep === "captain") {
+            setCaptainID(player.playerID);
+            setSelectionStep("viceCaptain");
+        } else if (selectionStep === "viceCaptain" && player.playerID !== captainID) {
+            setViceCaptainID(player.playerID);
+            setShowCaptainModal(false);
+            setSelectionStep("captain");
+        }
+    };
+
+    const getHighlightType = (playerID) => {
+        if (playerID === captainID) return "captain";
+        if (playerID === viceCaptainID) return "vice-captain";
+        return null;
     };
 
     return (
         <div className="flex flex-col w-full p-4 text-white rounded-lg shadow-md overflow-auto">
             <h2 className="text-lg font-semibold mb-4">Select Your Team</h2>
 
-            {/* ✅ Team Selection Buttons */}
             <div className="flex flex-wrap justify-center gap-4 mb-6">
                 {teams.map((team) => (
                     <button
                         key={team._id}
-                        className={`px-4 py-2 border rounded-md transition ${selectedTeam?._id === team._id ? "bg-blue-500 text-white" : "bg-gray-700"
-                            }`}
+                        className={`px-4 py-2 border rounded-md transition ${selectedTeam?._id === team._id ? "bg-blue-500 text-white" : "bg-gray-700"}`}
                         onClick={() => setSelectedTeam(team)}
                     >
                         {team.name}
@@ -120,23 +142,43 @@ const TeamSelection = ({ selectedPlayers }) => {
                 )}
             </div>
 
-            {/* ✅ Confirm Team Button */}
-            <button
-                className={`w-full py-2 my-4 rounded-md text-lg font-bold transition ${confirmedPlayers.length === 15 ? "bg-green-500 hover:bg-green-600" : "bg-gray-700 cursor-not-allowed"
-                    }`}
-                disabled={confirmedPlayers.length !== 15}
-                onClick={handleConfirmTeam}
-            >
-                Confirm Team
-            </button>
+            {confirmedPlayers.length === 15 && !captainID && !viceCaptainID && (
+                <button
+                    className="w-full py-2 mb-4 rounded-md bg-yellow-500 hover:bg-yellow-600 font-bold"
+                    onClick={() => setShowCaptainModal(true)}
+                >
+                    Select Captain & Vice-Captain
+                </button>
+            )}
 
-            {/* ✅ Player Grid */}
+            {confirmedPlayers.length === 15 && captainID && viceCaptainID && (
+                <button
+                    className="w-full py-2 my-4 rounded-md text-lg font-bold transition bg-green-500 hover:bg-green-600"
+                    onClick={handleConfirmTeam}
+                >
+                    Confirm Team
+                </button>
+            )}
+
             <div className="flex flex-wrap justify-center gap-3 w-full px-4 overflow-y-auto max-h-[80vh]">
                 {selectedTeam ? (
                     confirmedPlayers.length > 0 ? (
-                        confirmedPlayers.map((player) => (
-                            <PlayerCard key={player._id} player={player} />
-                        ))
+                        [...confirmedPlayers]
+                            .sort((a, b) => {
+                                if (a.playerID === captainID) return -1;
+                                if (b.playerID === captainID) return 1;
+                                if (a.playerID === viceCaptainID) return -1;
+                                if (b.playerID === viceCaptainID) return 1;
+                                return 0;
+                            })
+                            .map((player) => (
+                                <PlayerCard
+                                    key={player._id}
+                                    player={player}
+                                    highlight={getHighlightType(player.playerID)}
+                                    onSelect={() => { }}
+                                />
+                            ))
                     ) : (
                         <p className="text-gray-400">No players in this team.</p>
                     )
@@ -144,6 +186,26 @@ const TeamSelection = ({ selectedPlayers }) => {
                     <p className="text-gray-400">No teams available.</p>
                 )}
             </div>
+
+            {showCaptainModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-h-[90vh] overflow-y-auto">
+                        <h2 className="text-white text-lg font-bold mb-4">
+                            {selectionStep === "captain" ? "Select Captain" : "Select Vice-Captain"}
+                        </h2>
+                        <div className="flex flex-wrap gap-3 justify-center">
+                            {confirmedPlayers.map((player) => (
+                                <PlayerCard
+                                    key={player._id}
+                                    player={player}
+                                    onSelect={() => handlePlayerClickForCaptainVC(player)}
+                                    isSelected={false}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
