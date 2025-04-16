@@ -151,14 +151,19 @@ const TeamSelection = ({ selectedPlayers }) => {
                 </button>
             )}
 
-            {confirmedPlayers.length === 15 && captainID && viceCaptainID && (
-                <button
-                    className="w-full py-2 my-4 rounded-md text-lg font-bold transition bg-green-500 hover:bg-green-600"
-                    onClick={handleConfirmTeam}
-                >
-                    Confirm Team
-                </button>
-            )}
+            {confirmedPlayers.length === 15 &&
+                captainID &&
+                viceCaptainID &&
+                selectedTeam &&
+                selectedTeam._id?.startsWith("temp-") && // selectedTeam._id to ensure the button only appears when the team has a temporary ID (i.e., starts with 'temp-'), indicating it's not yet saved.
+                (
+                    <button
+                        className="w-full py-2 my-4 rounded-md text-lg font-bold transition bg-green-500 hover:bg-green-600"
+                        onClick={handleConfirmTeam}
+                    >
+                        Confirm Team
+                    </button>
+                )}
 
             <div className="flex flex-wrap justify-center gap-3 w-full px-4 overflow-y-auto max-h-[80vh]">
                 {selectedTeam ? (
