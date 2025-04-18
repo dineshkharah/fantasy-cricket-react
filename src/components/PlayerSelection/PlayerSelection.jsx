@@ -23,6 +23,25 @@ const PlayerSelection = ({ onPlayerSelect, selectedPlayers }) => {
     const [selectedRole, setSelectedRole] = useState("");
     const [selectedTempPlayers, setSelectedTempPlayers] = useState([]);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [selectedCount, setSelectedCount] = useState(selectedPlayers.length || 0);
+
+
+    // Load selected players from local storage on initial render
+    useEffect(() => {
+        const storedSelectedPlayers = localStorage.getItem("selectedPlayers");
+        if (storedSelectedPlayers) {
+            const parsedPlayers = JSON.parse(storedSelectedPlayers);
+            onPlayerSelect(parsedPlayers); // Populate parent state
+        }
+    }, []);
+
+
+    // Update selected player count when selected players change
+    useEffect(() => {
+        setSelectedCount(selectedPlayers.length);
+    }, [selectedPlayers]);
+
+
 
     // Fetch players from backend
     useEffect(() => {
@@ -72,9 +91,19 @@ const PlayerSelection = ({ onPlayerSelect, selectedPlayers }) => {
         setFilteredPlayers(updatedPlayers);
     }, [searchQuery, selectedTeam, selectedRole, players]);
 
+    // Update selected player count in local storage
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const updated = parseInt(localStorage.getItem("selectedPlayerCount") || "0", 10);
+            setSelectedCount(updated);
+        }, 500); // check every 500ms
+
+        return () => clearInterval(interval);
+    }, []);
+
     // Handle temporary player selection
     const handleTempSelect = (player) => {
-        const totalSelected = selectedPlayers.length + selectedTempPlayers.length;
+        const totalSelected = selectedCount + selectedTempPlayers.length;
 
         const isAlreadySelected =
             selectedTempPlayers.some(p => p.playerID === player.playerID) ||
@@ -100,6 +129,11 @@ const PlayerSelection = ({ onPlayerSelect, selectedPlayers }) => {
         );
 
         onPlayerSelect(updatedPlayers);
+        localStorage.setItem("selectedPlayers", JSON.stringify(updatedPlayers));
+        const newCount = selectedCount + selectedTempPlayers.length;
+        localStorage.setItem("selectedPlayerCount", newCount);
+        setSelectedCount(newCount);
+
         setSelectedTempPlayers([]);
         setShowConfirmModal(false);
     };

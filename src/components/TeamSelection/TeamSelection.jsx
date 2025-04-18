@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import PlayerCard from "../PlayerSelection/PlayerCard";
 import axios from "axios";
 
-const TeamSelection = ({ selectedPlayers }) => {
+const TeamSelection = ({ selectedPlayers,
+    setSelectedPlayers,
+    selectedPlayerCount,
+    setSelectedPlayerCount,
+}) => {
     const [teams, setTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState(null);
     const [confirmedPlayers, setConfirmedPlayers] = useState([]);
@@ -32,6 +36,15 @@ const TeamSelection = ({ selectedPlayers }) => {
 
         fetchTeamData();
     }, []);
+
+    // Load selected players from local storage on initial render
+    useEffect(() => {
+        if (selectedTeam && selectedTeam.players?.length > 0) {
+            // localStorage.setItem("selectedPlayers", JSON.stringify(selectedTeam.players));
+            // localStorage.setItem("selectedPlayerCount", selectedTeam.players.length.toString());
+        }
+    }, [selectedTeam]);
+
 
     useEffect(() => {
         if (selectedTeam) {
@@ -123,6 +136,27 @@ const TeamSelection = ({ selectedPlayers }) => {
         return null;
     };
 
+    // Function to handle player removal
+    const handleRemovePlayer = (playerIDToRemove) => {
+        const updatedPlayers = confirmedPlayers.filter((p) => p.playerID !== playerIDToRemove);
+        setConfirmedPlayers(updatedPlayers);
+
+        // If editing the current unsaved team
+        if (selectedTeam?._id?.startsWith("temp-")) {
+            const newSelected = selectedPlayers.filter((p) => p.playerID !== playerIDToRemove);
+            setSelectedPlayers(newSelected);
+            setSelectedPlayerCount(newSelected.length);
+
+            localStorage.setItem("selectedPlayers", JSON.stringify(newSelected));
+            localStorage.setItem("selectedPlayerCount", newSelected.length.toString());
+        }
+
+        if (captainID === playerIDToRemove) setCaptainID(null);
+        if (viceCaptainID === playerIDToRemove) setViceCaptainID(null);
+    };
+
+
+
     return (
         <div className="flex flex-col w-full p-4 text-white rounded-lg shadow-md overflow-auto">
             <h2 className="text-lg font-semibold mb-4">Select Your Team</h2>
@@ -199,6 +233,10 @@ const TeamSelection = ({ selectedPlayers }) => {
                                     player={player}
                                     highlight={getHighlightType(player.playerID)}
                                     onSelect={() => { }}
+                                    {...(selectedTeam._id?.startsWith("temp-") && {
+                                        onRemove: () => handleRemovePlayer(player.playerID),
+                                        showRemove: true,
+                                    })}
                                 />
                             ))
                     ) : (
@@ -228,6 +266,28 @@ const TeamSelection = ({ selectedPlayers }) => {
                     </div>
                 </div>
             )}
+
+            {selectedTeam && selectedTeam._id?.startsWith("temp-") && confirmedPlayers.length > 0 && (
+                <button
+                    className="w-full py-2 mt-4 rounded-md text-white font-bold bg-red-600 hover:bg-red-700"
+                    onClick={() => {
+                        setConfirmedPlayers([]);
+                        setSelectedPlayers([]);
+                        setSelectedPlayerCount(0);
+
+                        localStorage.setItem("selectedPlayers", JSON.stringify([]));
+                        localStorage.setItem("selectedPlayerCount", "0");
+
+                        setCaptainID(null);
+                        setViceCaptainID(null);
+                    }}
+                >
+                    Clear Team
+                </button>
+            )}
+
+
+
         </div>
     );
 };

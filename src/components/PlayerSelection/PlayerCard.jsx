@@ -13,7 +13,7 @@ const teamShortForms = {
     "Gujarat Titans": "GT",
 };
 
-const PlayerCard = ({ player, onSelect, isSelected, highlight }) => {
+const PlayerCard = ({ player, onSelect, isSelected, highlight, onRemove, showRemove }) => {
     let borderClass = "border-transparent";
 
     if (highlight === "captain") borderClass = "border-yellow-400";
@@ -27,6 +27,21 @@ const PlayerCard = ({ player, onSelect, isSelected, highlight }) => {
                 border-2 ${borderClass}`}
             onClick={() => onSelect(player)}
         >
+            {showRemove && onRemove && (
+                <button
+                    className="absolute top-1 right-1 text-red-400 hover:text-red-600 text-xs font-bold"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onRemove(player.playerID); // or just onRemove() if you're already passing ID
+                    }}
+                >
+                    ✕
+                </button>
+            )}
+
+
+
+
             <div className="w-12 h-12 flex-shrink-0">
                 <img
                     src="/assets/stock-player.png"
@@ -40,6 +55,18 @@ const PlayerCard = ({ player, onSelect, isSelected, highlight }) => {
                     {teamShortForms[player.team] || player.team} • {player.role} • {player.status}
                 </p>
             </div>
+
+            {/* {showRemove && (
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation(); // prevent triggering `onSelect`
+                        onRemove();
+                    }}
+                    className="ml-auto text-red-400 hover:text-red-600 font-bold text-xs"
+                >
+                    ✕
+                </button>
+            )} */}
         </div>
     );
 };
