@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext";
+
 
 const Login = () => {
+    const { login } = useAuth();
     const [identifier, setIdentifier] = useState(""); // Can be email OR username
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -14,32 +17,12 @@ const Login = () => {
         setError("");
 
         try {
-            console.log("Backend URL:", import.meta.env.VITE_BACKEND_URL);
-
-            // Send login request to backend
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/login`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ identifier, password }),
-            });
-
-            const data = await response.json(); // Parse response JSON
-
-            if (!response.ok) {
-                throw new Error(data.message || "Invalid credentials or server error.");
-            }
-
-            const jwtToken = data.token; // Extract JWT token
-
-            if (jwtToken) {
-                localStorage.setItem("token", jwtToken);
-                alert("Login successful!"); // Only show alert if token is stored
-                navigate("/dashboard"); // Redirect to dashboard
-            } else {
-                throw new Error("Login failed. No token received.");
-            }
+            await login(identifier, password);
+            alert("Login successful!");
+            navigate("/dashboard", { replace: true });
         } catch (err) {
-            setError(err.message);
+            const errorMsg = err.response?.data?.message || err.message || "Something went wrong";
+            setError(errorMsg);
         }
     };
 

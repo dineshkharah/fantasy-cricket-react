@@ -77,7 +77,8 @@ export const AuthProvider = ({ children }) => {
 
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        fetchUserProfile(data.token);
+
+        await fetchUserProfile(data.token); //User profile fetch hone tak wait karega
     };
 
     // Logout function
