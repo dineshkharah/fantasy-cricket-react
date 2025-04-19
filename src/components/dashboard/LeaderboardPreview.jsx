@@ -2,11 +2,11 @@ import React from "react";
 
 const LeaderboardPreview = () => {
     const topUsers = [
-        { name: "Rohit Sharma", points: 550 },
-        { name: "Riya Patel", points: 525 },
-        { name: "Amit Singh", points: 510 },
-        { name: "Tina Roy", points: 495 },
-        { name: "You", points: 395.5 },
+        { name: "Temp Name", points: 100 },
+        { name: "Temp Name", points: 100 },
+        { name: "Temp Name", points: 100 },
+        { name: "Temp Name", points: 100 },
+        { name: "Temp Name", points: 100 },
     ];
 
     return (
@@ -21,7 +21,6 @@ const LeaderboardPreview = () => {
                 ))}
             </ol>
         </div>
-
     );
 };
 
