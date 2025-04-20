@@ -55,14 +55,14 @@ const TeamPage = () => {
     }, [selectedPlayers]);
 
     return (
-        <div className="flex w-full h-screen gap-4 p-4 overflow-hidden">
-            <div className="w-1/2 border border-gray-600 rounded-2xl p-4 flex flex-col overflow-hidden">
+        <div className="flex flex-col lg:flex-row w-full h-full gap-4 p-4 overflow-hidden">
+            <div className="w-full lg:w-1/2 border border-gray-600 rounded-2xl p-4 flex flex-col overflow-hidden">
                 <PlayerSelection
                     onPlayerSelect={handleSelectPlayer}
                     selectedPlayers={selectedPlayers}
                 />
             </div>
-            <div className="w-1/2 border border-gray-600 rounded-2xl p-4 flex flex-col overflow-hidden">
+            <div className="w-full lg:w-1/2 border border-gray-600 rounded-2xl p-4 flex flex-col overflow-hidden">
                 <TeamSelection
                     selectedPlayers={selectedPlayers}
                     setSelectedPlayers={setSelectedPlayers}
@@ -72,6 +72,7 @@ const TeamPage = () => {
             </div>
         </div>
     );
+
 };
 
 export default TeamPage;
