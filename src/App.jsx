@@ -5,11 +5,14 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Players from "./pages/Players";
 import TeamPage from "./pages/TeamPage";
+import Navbar from "./components/Navbar";
+
 import ProtectedRoute from "./protected/ProtectedRoute";
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

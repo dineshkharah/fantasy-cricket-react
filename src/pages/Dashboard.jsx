@@ -49,7 +49,7 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <div className="w-full mx-2 lg:mx-32 h-full min-h-screen gap-4 p-4 bg-gray-900 text-gray-100">
+        <div className="w-full mx-2 lg:mx-32 h-full min-h-screen gap-4 p-4 bg-gray-900 text-gray-100 pt-16 px-4">
             <h1 className="text-2xl font-bold text-blue-400">User Dashboard</h1>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
                 <div className="lg:col-span-2 space-y-4">
