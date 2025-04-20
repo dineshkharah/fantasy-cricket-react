@@ -15,7 +15,7 @@ const Signup = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
-    const branches = ["Computer Science", "Information Technology", "Electronics", "Mechanical", "Civil", "Other"];
+    const branches = ['COMP', 'IT', 'AI&ML', 'AI&DS', 'E&TC', 'MECH', 'MME', 'CIVIL', 'E&CS', 'IoT', 'CSE', 'B.Voc']
     const years = ["First", "Second", "Third", "Fourth"];
     const divisions = ["A", "B", "C", "D"];
 
