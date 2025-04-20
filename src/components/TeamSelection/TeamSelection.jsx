@@ -14,6 +14,7 @@ const TeamSelection = ({ selectedPlayers,
     const [captainID, setCaptainID] = useState(null);
     const [viceCaptainID, setViceCaptainID] = useState(null);
     const [selectionStep, setSelectionStep] = useState("captain");
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         const fetchTeamData = async () => {
@@ -116,7 +117,14 @@ const TeamSelection = ({ selectedPlayers,
             setViceCaptainID(null);
         } catch (error) {
             console.error("Error saving team:", error);
+
+            const message = error.response?.data?.message || "Something went wrong while saving your team.";
+            setErrorMessage(message);
+
+            // Optional: Clear the error after 5 seconds
+            setTimeout(() => setErrorMessage(""), 5000);
         }
+
     };
 
     const handlePlayerClickForCaptainVC = (player) => {
@@ -159,6 +167,13 @@ const TeamSelection = ({ selectedPlayers,
 
     return (
         <div className="flex flex-col w-full p-4 text-white rounded-lg shadow-md overflow-auto">
+
+            {errorMessage && (
+                <div className="mb-4 p-3 rounded-md bg-red-600 text-white font-semibold shadow-md">
+                    {errorMessage}
+                </div>
+            )}
+
             <h2 className="text-lg font-semibold mb-4">Select Your Team</h2>
 
             <div className="flex flex-wrap justify-center gap-4 mb-6">
