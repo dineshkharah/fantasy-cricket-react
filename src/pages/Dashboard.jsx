@@ -48,12 +48,30 @@ const Dashboard = () => {
         fetchDashboardData();
     }, []);
 
+    const handleDeleteTeam = async (teamId) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this team?");
+        if (!confirmDelete) return;
+
+        try {
+            const token = localStorage.getItem("token");
+            const headers = { Authorization: `Bearer ${token}` };
+            await axios.delete(`http://localhost:5000/api/v1/teams/${teamId}`, { headers });
+
+            // Remove from state after successful deletion
+            const updatedTeams = allTeams.filter((team) => team._id !== teamId);
+            setAllTeams(updatedTeams);
+        } catch (err) {
+            console.error("Failed to delete team:", err);
+        }
+    };
+
+
     return (
         <div className="w-full mx-2 lg:mx-32 h-full min-h-screen gap-4 p-4 bg-gray-900 text-gray-100 pt-16 px-4">
             <h1 className="text-2xl font-bold text-blue-400">User Dashboard</h1>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
                 <div className="lg:col-span-2 space-y-4">
-                    <UserTeam teams={allTeams} />
+                    <UserTeam teams={allTeams} onDelete={handleDeleteTeam} />
                     <MatchPerformance matches={mvps} />
                 </div>
                 <div className="space-y-4">
