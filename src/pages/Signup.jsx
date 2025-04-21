@@ -36,14 +36,11 @@ const Signup = () => {
                 division,
             });
 
-
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.message || "Signup failed");
-
             setSuccess("User signed up successfully!");
             setTimeout(() => navigate("/login"), 2000);
         } catch (err) {
-            setError(err.message);
+            const message = err.response?.data?.message || "Signup failed";
+            setError(message);
         }
     };
 
