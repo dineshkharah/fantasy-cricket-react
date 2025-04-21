@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "../utils/axios";
 
 const Players = () => {
     const [players, setPlayers] = useState([]);
@@ -6,9 +7,8 @@ const Players = () => {
     useEffect(() => {
         const fetchPlayers = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/players");
-                const data = await response.json();
-                setPlayers(data);
+                const response = await axios.get("/api/v1/players");
+                setPlayers(response.data);
             } catch (error) {
                 console.error("Error fetching players:", error);
             }

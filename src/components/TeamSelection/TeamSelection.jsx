@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PlayerCard from "../PlayerSelection/PlayerCard";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 const TeamSelection = ({ selectedPlayers,
     setSelectedPlayers,
@@ -22,7 +22,7 @@ const TeamSelection = ({ selectedPlayers,
                 const token = localStorage.getItem("token");
                 if (!token) return;
 
-                const res = await axios.get("http://localhost:5000/api/v1/teams/", {
+                const res = await axios.get("/api/v1/teams/", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
@@ -97,7 +97,7 @@ const TeamSelection = ({ selectedPlayers,
         try {
             const token = localStorage.getItem("token");
             const res = await axios.post(
-                "http://localhost:5000/api/v1/teams/create",
+                "/api/v1/teams/create",
                 {
                     teamName: selectedTeam.name,
                     players: confirmedPlayers,

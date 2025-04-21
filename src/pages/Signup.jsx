@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "../utils/axios";
 
 const Signup = () => {
     const [fullName, setFullName] = useState("");
@@ -25,19 +26,16 @@ const Signup = () => {
         setSuccess("");
 
         try {
-            const response = await fetch("http://localhost:5000/api/v1/auth/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    fullName,
-                    username,
-                    email,
-                    password,
-                    branch,
-                    year,
-                    division
-                }),
+            const response = await axios.post("/api/v1/auth/register", {
+                fullName,
+                username,
+                email,
+                password,
+                branch,
+                year,
+                division,
             });
+
 
             const data = await response.json();
             if (!response.ok) throw new Error(data.message || "Signup failed");

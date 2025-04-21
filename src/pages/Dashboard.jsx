@@ -4,7 +4,7 @@ import TotalPoints from '../components/dashboard/TotalPoints';
 import MatchPerformance from '../components/dashboard/MatchPerformance';
 import LeaderboardPreview from '../components/dashboard/LeaderboardPreview';
 import UserProfileSummary from '../components/dashboard/UserProfileSummary';
-import axios from 'axios';
+import axios from '../utils/axios';
 
 const Dashboard = () => {
     const [dataLoaded, setDataLoaded] = useState(false);
@@ -18,16 +18,16 @@ const Dashboard = () => {
                 const token = localStorage.getItem("token");
                 const headers = { Authorization: `Bearer ${token}` };
 
-                const profileRes = await axios.get("http://localhost:5000/api/v1/auth/profile", { headers });
+                const profileRes = await axios.get("/api/v1/auth/profile", { headers });
                 setUserProfile(profileRes.data);
 
-                const teamsRes = await axios.get("http://localhost:5000/api/v1/teams/", { headers });
+                const teamsRes = await axios.get("/api/v1/teams/", { headers });
                 const allFetchedTeams = teamsRes.data || [];
                 setAllTeams(allFetchedTeams);
 
                 const highestTeam = allFetchedTeams.reduce((max, t) => t.totalPoints > max.totalPoints ? t : max, allFetchedTeams[0]);
 
-                const matchesRes = await axios.get("http://localhost:5000/api/v1/matches/");
+                const matchesRes = await axios.get("/api/v1/matches/");
                 const matches = matchesRes.data;
 
                 const mvpList = highestTeam?.processedMatches?.map(matchId => {
@@ -55,7 +55,7 @@ const Dashboard = () => {
         try {
             const token = localStorage.getItem("token");
             const headers = { Authorization: `Bearer ${token}` };
-            await axios.delete(`http://localhost:5000/api/v1/teams/${teamId}`, { headers });
+            await axios.delete(`/api/v1/teams/${teamId}`, { headers });
 
             // Remove from state after successful deletion
             const updatedTeams = allTeams.filter((team) => team._id !== teamId);

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import axios from "../utils/axios";
 
 const AuthContext = createContext();
 
@@ -21,22 +22,16 @@ export const AuthProvider = ({ children }) => {
     // Fetch user details from backend
     const fetchUserProfile = async (token) => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/profile`, {
-                method: "GET",
+            const response = await axios.get("/api/v1/auth/profile", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
 
-            if (!response.ok) {
-                throw new Error("Failed to fetch user profile");
-            }
-
-            const userData = await response.json();
-            setUser(userData);
+            setUser(response.data);
         } catch (error) {
             console.error(error);
-            logout(); // If token is invalid, log out the user
+            logout();
         } finally {
             setLoading(false);
         }
@@ -44,42 +39,32 @@ export const AuthProvider = ({ children }) => {
 
     // Signup function
     const signup = async ({ fullName, username, email, password, branch, year, division }) => {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/register`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ fullName, username, email, password, branch, year, division }),
+        const response = await axios.post("/api/v1/auth/register", {
+            fullName,
+            username,
+            email,
+            password,
+            branch,
+            year,
+            division,
         });
 
-        if (!response.ok) {
-            throw new Error("Signup failed");
-        }
-
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
-        fetchUserProfile(data.token);
+        localStorage.setItem("token", response.data.token);
+        fetchUserProfile(response.data.token);
     };
+
 
     // Login function
     const login = async (identifier, password) => {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ identifier, password }),
+        const response = await axios.post("/api/v1/auth/login", {
+            identifier,
+            password,
         });
 
-        if (!response.ok) {
-            throw new Error("Invalid credentials");
-        }
-
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
-
-        await fetchUserProfile(data.token); //User profile fetch hone tak wait karega
+        localStorage.setItem("token", response.data.token);
+        await fetchUserProfile(response.data.token);
     };
+
 
     // Logout function
     const logout = () => {

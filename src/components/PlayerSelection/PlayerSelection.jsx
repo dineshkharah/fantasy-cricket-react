@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PlayerCard from "./PlayerCard";
 import PlayerFilters from "./PlayerFilters";
+import axios from "../../utils/axios"
 
 const teamMapping = {
     "CSK": "Chennai Super Kings",
@@ -47,10 +48,9 @@ const PlayerSelection = ({ onPlayerSelect, selectedPlayers }) => {
     useEffect(() => {
         const fetchPlayers = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/players`);
-                const data = await response.json();
-                setPlayers(data);
-                setFilteredPlayers(data);
+                const response = await axios.get("/api/v1/players");
+                setPlayers(response.data);
+                setFilteredPlayers(response.data);
             } catch (error) {
                 console.error("Error fetching players:", error);
             }
