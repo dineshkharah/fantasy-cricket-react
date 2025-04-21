@@ -82,6 +82,11 @@ const TeamSelection = ({
     const handleCreateNewTeam = () => {
         if (teams.length >= 3) return;
 
+        // if (selectedTeam && (!selectedTeam.players || selectedTeam.players.length < 15)) {
+        //     alert("Please confirm the current team before creating a new one.");
+        //     return;
+        // }
+
         const newTeam = {
             _id: `temp-${Date.now()}`,
             name: `Team ${teams.length + 1}`,
@@ -192,8 +197,12 @@ const TeamSelection = ({
                 ))}
                 {teams.length < 3 && (
                     <button
-                        className="px-4 py-2 bg-green-500 text-white rounded-md"
+                        className={`px-4 py-2 text-white rounded-md 
+                        ${selectedTeam && selectedTeam.players && selectedTeam.players.length < 15
+                                ? "bg-gray-600 cursor-not-allowed"
+                                : "bg-green-500 hover:bg-green-600"}`}
                         onClick={handleCreateNewTeam}
+                        disabled={selectedTeam && selectedTeam.players && selectedTeam.players.length < 15}
                     >
                         + Create New Team
                     </button>
