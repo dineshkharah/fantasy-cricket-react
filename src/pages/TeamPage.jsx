@@ -19,31 +19,19 @@ const TeamPage = () => {
 
     // ✅ Update localStorage + count when players are selected
     const handleSelectPlayer = (newPlayers) => {
-        setSelectedPlayers((prevSelected) => {
-            let updatedPlayers = [...prevSelected];
+        const uniquePlayers = newPlayers.filter(
+            (player, index, self) =>
+                index === self.findIndex((p) => p._id === player._id)
+        );
 
-            newPlayers.forEach((player) => {
-                const isAlreadySelected = updatedPlayers.some((p) => p._id === player._id);
+        const cappedPlayers = uniquePlayers.slice(0, 15); // Safety cap, in case
+        setSelectedPlayers(cappedPlayers);
+        setSelectedPlayerCount(cappedPlayers.length);
 
-                if (isAlreadySelected) {
-                    // Remove player
-                    updatedPlayers = updatedPlayers.filter((p) => p._id !== player._id);
-                } else if (updatedPlayers.length < 15) {
-                    // Add player
-                    updatedPlayers.push(player);
-                }
-            });
-
-            // Save to localStorage
-            localStorage.setItem("selectedPlayers", JSON.stringify(updatedPlayers));
-            localStorage.setItem("selectedPlayerCount", updatedPlayers.length.toString());
-
-            // Update count
-            setSelectedPlayerCount(updatedPlayers.length);
-
-            return updatedPlayers;
-        });
+        localStorage.setItem("selectedPlayers", JSON.stringify(cappedPlayers));
+        localStorage.setItem("selectedPlayerCount", cappedPlayers.length.toString());
     };
+
 
     // 🔁 Sync count whenever selectedPlayers change
     useEffect(() => {

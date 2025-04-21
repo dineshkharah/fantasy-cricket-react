@@ -112,41 +112,54 @@ const PlayerSelection = ({
             return;
         }
 
-        const totalSelected = selectedCount + selectedTempPlayers.length;
-
         const isAlreadySelected =
             selectedTempPlayers.some(p => p.playerID === player.playerID) ||
             selectedPlayers.some(p => p.playerID === player.playerID);
 
         if (isAlreadySelected) {
-            // Deselect if it was only in temp
-            setSelectedTempPlayers(selectedTempPlayers.filter(p => p.playerID !== player.playerID));
-        } else if (totalSelected < 15) {
-            setSelectedTempPlayers([...selectedTempPlayers, player]);
+            setSelectedTempPlayers(prev =>
+                prev.filter(p => p.playerID !== player.playerID)
+            );
         } else {
-            alert("You can only select 15 players in total.");
+            const combinedCount = [...selectedPlayers, ...selectedTempPlayers, player]
+                .filter((p, index, self) =>
+                    index === self.findIndex(q => q.playerID === p.playerID)
+                ).length;
+
+            if (combinedCount > 15) {
+                alert("You can only select 15 players in total.");
+            } else {
+                setSelectedTempPlayers(prev => [...prev, player]);
+            }
         }
     };
 
 
+
     // Handle adding to final team
     const handleConfirmSelection = () => {
-        console.log("Confirming Selection:", selectedTempPlayers);
+        const combined = [...selectedPlayers, ...selectedTempPlayers];
 
-        const updatedPlayers = [...selectedPlayers, ...selectedTempPlayers].filter(
+        const deduped = combined.filter(
             (player, index, self) =>
                 index === self.findIndex((p) => p.playerID === player.playerID)
         );
 
-        onPlayerSelect(updatedPlayers);
-        localStorage.setItem("selectedPlayers", JSON.stringify(updatedPlayers));
-        const newCount = selectedCount + selectedTempPlayers.length;
-        localStorage.setItem("selectedPlayerCount", newCount);
-        setSelectedCount(newCount);
+        if (deduped.length > 15) {
+            alert("You can only have a maximum of 15 unique players.");
+            return;
+        }
+
+        // Only update if within valid limit
+        onPlayerSelect(deduped);
+        localStorage.setItem("selectedPlayers", JSON.stringify(deduped));
+        localStorage.setItem("selectedPlayerCount", deduped.length);
+        setSelectedCount(deduped.length);
 
         setSelectedTempPlayers([]);
         setShowConfirmModal(false);
     };
+
 
     return (
         <div className="flex flex-col w-full p-4 rounded-lg shadow-md overflow-auto">
