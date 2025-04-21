@@ -71,7 +71,20 @@ const Dashboard = () => {
             <h1 className="text-2xl font-bold text-blue-400">User Dashboard</h1>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
                 <div className="lg:col-span-2 space-y-4">
-                    <UserTeam teams={allTeams} onDelete={handleDeleteTeam} />
+                    {allTeams.length === 0 ? (
+                        <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                            <p className="text-lg mb-4">You haven’t created a team yet.</p>
+                            <button
+                                onClick={() => window.location.href = "/team-selection"}
+                                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition"
+                            >
+                                Create Your Team
+                            </button>
+                        </div>
+                    ) : (
+                        <UserTeam teams={allTeams} onDelete={handleDeleteTeam} />
+                    )}
+
                     <MatchPerformance matches={mvps} />
                 </div>
                 <div className="space-y-4">
