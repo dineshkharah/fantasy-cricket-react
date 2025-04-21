@@ -45,18 +45,27 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {isLoggedIn && (
-                    <button
-                        onClick={handleLogout}
-                        className="bg-red-500 hover:bg-red-600 px-4 py-1 rounded-md font-semibold"
-                    >
-                        Logout
-                    </button>
-                )}
+                <div>
+                    {isLoggedIn ? (
+                        <button
+                            onClick={handleLogout}
+                            className="bg-red-500 hover:bg-red-600 px-4 py-1 rounded-md font-semibold"
+                        >
+                            Logout
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => navigate("/login")}
+                            className="bg-blue-500 hover:bg-blue-600 px-4 py-1 rounded-md font-semibold"
+                        >
+                            Login
+                        </button>
+                    )}
+                </div>
             </nav>
-
         </>
     );
+
 };
 
 export default Navbar;
