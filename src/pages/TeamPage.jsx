@@ -5,6 +5,7 @@ import TeamSelection from "../components/TeamSelection/TeamSelection";
 const TeamPage = () => {
     const [selectedPlayers, setSelectedPlayers] = useState([]);
     const [selectedPlayerCount, setSelectedPlayerCount] = useState(0);
+    const [canSelectPlayers, setCanSelectPlayers] = useState(false);
 
     // 🔁 Hydrate from localStorage on first mount
     useEffect(() => {
@@ -60,6 +61,7 @@ const TeamPage = () => {
                 <PlayerSelection
                     onPlayerSelect={handleSelectPlayer}
                     selectedPlayers={selectedPlayers}
+                    canSelectPlayers={canSelectPlayers}
                 />
             </div>
             <div className="w-full lg:w-1/2 border border-gray-600 rounded-2xl p-4 flex flex-col overflow-hidden">
@@ -68,6 +70,7 @@ const TeamPage = () => {
                     setSelectedPlayers={setSelectedPlayers}
                     selectedPlayerCount={selectedPlayerCount}
                     setSelectedPlayerCount={setSelectedPlayerCount}
+                    setCanSelectPlayers={setCanSelectPlayers}
                 />
             </div>
         </div>

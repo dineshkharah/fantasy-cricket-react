@@ -16,7 +16,11 @@ const teamMapping = {
     "GT": "Gujarat Titans",
 };
 
-const PlayerSelection = ({ onPlayerSelect, selectedPlayers }) => {
+const PlayerSelection = ({
+    onPlayerSelect,
+    selectedPlayers,
+    canSelectPlayers
+}) => {
     const [players, setPlayers] = useState([]);
     const [filteredPlayers, setFilteredPlayers] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
@@ -103,6 +107,11 @@ const PlayerSelection = ({ onPlayerSelect, selectedPlayers }) => {
 
     // Handle temporary player selection
     const handleTempSelect = (player) => {
+        if (!canSelectPlayers) {
+            alert("Click 'Create New Team' to start selecting players.");
+            return;
+        }
+
         const totalSelected = selectedCount + selectedTempPlayers.length;
 
         const isAlreadySelected =
@@ -118,6 +127,7 @@ const PlayerSelection = ({ onPlayerSelect, selectedPlayers }) => {
             alert("You can only select 15 players in total.");
         }
     };
+
 
     // Handle adding to final team
     const handleConfirmSelection = () => {

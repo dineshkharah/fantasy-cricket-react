@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import PlayerCard from "../PlayerSelection/PlayerCard";
 import axios from "../../utils/axios";
 
-const TeamSelection = ({ selectedPlayers,
+const TeamSelection = ({
+    selectedPlayers,
     setSelectedPlayers,
     selectedPlayerCount,
     setSelectedPlayerCount,
+    setCanSelectPlayers
 }) => {
     const [teams, setTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState(null);
@@ -89,6 +91,8 @@ const TeamSelection = ({ selectedPlayers,
         setTeams([...teams, newTeam]);
         setSelectedTeam(newTeam);
         setConfirmedPlayers([]);
+
+        setCanSelectPlayers(true);
     };
 
     const handleConfirmTeam = async () => {
