@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: Curl Render API to keep alive
         run: |
-          curl -s https://your-render-api.onrender.com/api/ping || echo "Ping failed"
+          curl -s https://fantasy-cricket-react.onrender.com/api/v1/players || echo "Ping failed"
