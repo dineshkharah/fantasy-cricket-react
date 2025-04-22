@@ -192,7 +192,7 @@ const TeamSelection = ({
                         className={`px-4 py-2 border rounded-md transition ${selectedTeam?._id === team._id ? "bg-blue-500 text-white" : "bg-gray-700"}`}
                         onClick={() => setSelectedTeam(team)}
                     >
-                        {team.name}
+                        {team.name || `Team ${teams.indexOf(team) + 1}`}
                     </button>
                 ))}
                 {teams.length < 3 && (
