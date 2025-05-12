@@ -12,10 +12,10 @@ async function scrapeCricketScore(url) {
         function parseHowOut(text) {
             let howOut = {};
 
-            if(text.includes("not out")) {
+            if (text.includes("not out")) {
                 return howOut = "not out";
             }
-        
+
             if (text.includes("run out")) {
                 let match = text.match(/run out\s*\(([^)]+)\)/);
                 howOut["run out"] = match ? match[1] : "Unknown";
@@ -42,10 +42,10 @@ async function scrapeCricketScore(url) {
                     howOut["b"] = match[1].trim();
                 }
             }
-        
+
             return howOut;
         }
-        
+
         // batting ka nikal ke dega
         function extractBattingData(team) {
             let batters = team[0].querySelectorAll('.cb-col.cb-col-100.cb-scrd-itms');
@@ -99,7 +99,7 @@ async function scrapeCricketScore(url) {
         let matchSummary = document.querySelector('.cb-scrcrd-status')?.innerText.trim() || "";
 
         let finalData = {
-            metadata : {
+            metadata: {
                 title,
                 series,
                 venue,
@@ -132,6 +132,6 @@ async function scrapeCricketScore(url) {
     await browser.close();
 }
 
-let url = 'https://www.cricbuzz.com/live-cricket-scorecard/115030/rr-vs-csk-11th-match-indian-premier-league-2025';
+let url = 'https://www.cricbuzz.com/live-cricket-scorecard/115059/lsg-vs-mi-16th-match-indian-premier-league-2025';
 
 scrapeCricketScore(url);
