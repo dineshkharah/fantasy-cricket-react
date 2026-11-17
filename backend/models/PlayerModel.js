@@ -7,7 +7,8 @@ const playerSchema = new mongoose.Schema({
     price: { type: String, required: true },
     type: { type: String, required: true }, // Domestic/International
     status: { type: String, required: true }, // Sold/Unsold
-    playerID: { type: String, unique: true, required: true } // Custom identifier
+    playerID: { type: String, unique: true, required: true }, // Custom identifier
+    fantasyPoints: { type: Number, default: 0 } // running total for the season
 }, { timestamps: true });
 
 module.exports = mongoose.model("Player", playerSchema);
