@@ -3,6 +3,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const dns = require("node:dns");
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
+
 // Import routes
 const authRoutes = require("./routes/authRoutes");
 const playersRoutes = require("./routes/playersRoute");
@@ -12,13 +15,19 @@ const fantasyRoutes = require("./routes/fantasyRoutes");
 
 const app = express();
 
-app.use(cors({ origin: [process.env.API_BASE_URL, "http://localhost:5173"], credentials: true }));
+app.use(
+  cors({
+    origin: [process.env.API_BASE_URL, "http://localhost:5173"],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB connected"))
-    .catch((err) => console.error(err));
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error(err));
 
 // Routes
 app.use("/api/v1/auth", authRoutes);
