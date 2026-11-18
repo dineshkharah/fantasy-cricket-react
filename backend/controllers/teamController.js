@@ -56,7 +56,8 @@ const createTeam = async (req, res) => {
         res.status(201).json(newTeam);
     } catch (error) {
         console.error("Error in createTeam:", error); // Debugging
-        res.status(500).json({ message: "Server error", error });
+        console.error("Server error:", error);
+        res.status(500).json({ message: "Server error" });
     }
 };
 
@@ -67,7 +68,8 @@ const getUserTeams = async (req, res) => {
         const teams = await Team.find({ userId });
         res.json(teams);
     } catch (error) {
-        res.status(500).json({ message: "Server error", error });
+        console.error("Server error:", error);
+        res.status(500).json({ message: "Server error" });
     }
 };
 
@@ -85,7 +87,8 @@ const getTeamById = async (req, res) => {
 
         res.json(team);
     } catch (error) {
-        res.status(500).json({ message: "Server error", error });
+        console.error("Server error:", error);
+        res.status(500).json({ message: "Server error" });
     }
 };
 
@@ -103,7 +106,8 @@ const deleteTeam = async (req, res) => {
 
         res.json({ message: "Team deleted successfully" });
     } catch (error) {
-        res.status(500).json({ message: "Server error", error });
+        console.error("Server error:", error);
+        res.status(500).json({ message: "Server error" });
     }
 };
 

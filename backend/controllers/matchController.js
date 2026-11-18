@@ -51,7 +51,8 @@ const saveMatchStats = async (req, res) => {
         res.status(201).json({ message: "Match data saved successfully", newMatch });
 
     } catch (error) {
-        res.status(500).json({ message: "Error saving match data", error });
+        console.error("Error saving match data:", error);
+        res.status(500).json({ message: "Error saving match data" });
     }
 };
 
@@ -66,7 +67,8 @@ const getMatchById = async (req, res) => {
 
         res.json(match);
     } catch (error) {
-        res.status(500).json({ message: "Error fetching match", error });
+        console.error("Error fetching match:", error);
+        res.status(500).json({ message: "Error fetching match" });
     }
 };
 
@@ -76,7 +78,8 @@ const getAllMatches = async (req, res) => {
         const matches = await Match.find();
         res.json(matches);
     } catch (error) {
-        res.status(500).json({ message: "Error fetching matches", error });
+        console.error("Error fetching matches:", error);
+        res.status(500).json({ message: "Error fetching matches" });
     }
 };
 
