@@ -1,6 +1,9 @@
 // Wipes every score and works them all out again with the current scoring rules.
 // Run it from the backend folder:  node resetScores.js --yes
 // It only touches scores. Teams, squads, captains, players and users stay as they are.
+//
+// The work itself lives in services/recomputeScores.js, which the admin page
+// calls too, so both do exactly the same thing.
 
 require("dotenv").config({ path: require("path").join(__dirname, ".env") });
 const mongoose = require("mongoose");
@@ -9,10 +12,15 @@ const mongoose = require("mongoose");
 const dns = require("node:dns");
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
-const Team = require("./models/TeamModel");
-const Player = require("./models/PlayerModel");
-const Match = require("./models/MatchModel");
-const { updateFantasyPoints } = require("./services/fantasyPointsUpdater");
+const { recomputeAllScores } = require("./services/recomputeScores");
+
+const show = (title, rows, nameKey) => {
+    console.log("");
+    console.log(title);
+    for (const row of rows) {
+        console.log(`${String(row.points).padStart(8)}  ${row[nameKey]}`);
+    }
+};
 
 const run = async () => {
     if (!process.argv.includes("--yes")) {
@@ -28,44 +36,30 @@ const run = async () => {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("connected to the database");
 
-    const matches = await Match.find().sort({ createdAt: 1 });
-    console.log(`found ${matches.length} match(es)`);
+    const result = await recomputeAllScores();
 
-    if (matches.length === 0) {
+    if (result.busy) {
+        console.log(result.message);
+        return;
+    }
+
+    if (result.matchesScored === 0) {
         console.log("no matches stored, nothing to do");
         return;
     }
 
-    const oldTeams = await Team.find().sort({ totalPoints: -1 });
-    console.log("");
-    console.log("team totals before the reset");
-    for (const team of oldTeams) {
-        console.log(`${String(team.totalPoints).padStart(8)}  ${team.teamName}`);
-    }
-    console.log("");
-    console.log("wiping the old scores");
-    await Team.updateMany({}, { $set: { totalPoints: 0, matchPoints: [], processedMatches: [] } });
-    await Player.updateMany({}, { $set: { fantasyPoints: 0 } });
-    await Match.updateMany({}, { $set: { fantasyPointsProcessed: false } });
+    show("team totals before the reset", result.before, "teamName");
 
-    for (const match of matches) {
-        console.log(`scoring: ${match.title}`);
-        await updateFantasyPoints(match._id);
+    console.log("");
+    for (const title of result.matches) {
+        console.log(`scored: ${title}`);
     }
 
-    const teams = await Team.find().sort({ totalPoints: -1 });
-    console.log("");
-    console.log("final team totals");
-    for (const team of teams) {
-        console.log(`${String(team.totalPoints).padStart(8)}  ${team.teamName}`);
-    }
+    show("final team totals", result.after, "teamName");
+    show("top 5 players", result.topPlayers, "name");
 
-    const topPlayers = await Player.find().sort({ fantasyPoints: -1 }).limit(5);
     console.log("");
-    console.log("top 5 players");
-    for (const player of topPlayers) {
-        console.log(`${String(player.fantasyPoints).padStart(8)}  ${player.name}`);
-    }
+    console.log(`${result.matchesScored} match(es) in ${(result.tookMs / 1000).toFixed(1)} seconds`);
 };
 
 run()
