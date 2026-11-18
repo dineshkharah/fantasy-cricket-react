@@ -12,7 +12,11 @@ const verifyToken = (req, res, next) => {
         req.user = decoded; // Attach user to request object
         next();
     } catch (error) {
-        res.status(403).json({ message: "Invalid token", error });
+        // 401, not 403. A token we cannot read means we do not know who this is,
+        // which is different from knowing and saying no.
+        // The reason is logged, not sent, so it cannot help someone forge one.
+        console.error("token check failed:", error.message);
+        res.status(401).json({ message: "Unauthorized: invalid token" });
     }
 };
 
