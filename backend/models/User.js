@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
     branch: { type: String, required: true },
     year: { type: String, required: true },
     division: { type: String, required: true },
+    role: { type: String, enum: ["user", "admin"], default: "user" },
 });
 
 module.exports = mongoose.model("User", UserSchema);
