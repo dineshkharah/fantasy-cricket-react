@@ -29,7 +29,6 @@ const formattedData = rawData.map(player => ({
     playerID: generatePlayerId(player.Name, player.Team) // Store custom ID separately
 }));
 
-console.log("First Transformed Player:", formattedData[0]); // Debugging log
 
 const uploadPlayers = async () => {
     try {

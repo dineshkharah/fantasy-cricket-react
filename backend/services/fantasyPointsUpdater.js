@@ -134,8 +134,6 @@ const updateFantasyPoints = async (matchId) => {
             const battingTeam = inning.team?.split("Innings")[0]?.trim() || "";
             const bowlingTeam = battingTeam === team1 ? team2 : team1;
 
-            const rawTeamName = inning.team || "";
-            const teamName = rawTeamName.split("Innings")[0].trim();
             for (let batting of inning.batting) {
                 const player = playerIndex.byName(batting.playerName, battingTeam);
                 if (!player) continue;
@@ -166,8 +164,6 @@ const updateFantasyPoints = async (matchId) => {
             const battingTeam = inning.team?.split("Innings")[0]?.trim() || "";
             const bowlingTeam = battingTeam === team1 ? team2 : team1;
 
-            const rawTeamName = inning.team || "";
-            const teamName = rawTeamName.split("Innings")[0].trim();
             for (let bowling of inning.bowling) {
                 const player = playerIndex.byName(bowling.playerName, bowlingTeam);
                 if (!player) continue;
@@ -199,8 +195,6 @@ const updateFantasyPoints = async (matchId) => {
             const battingTeam = inning.team?.split("Innings")[0]?.trim() || "";
             const bowlingTeam = battingTeam === team1 ? team2 : team1;
 
-            const rawTeamName = inning.team || "";
-            const teamName = rawTeamName.split("Innings")[0].trim();
             for (let batting of inning.batting) {
                 if (!batting.how_out) continue;
 

@@ -3,14 +3,12 @@ const Team = require("../models/TeamModel");
 // Create a new team
 const createTeam = async (req, res) => {
     try {
-        console.log("Decoded User from JWT:", req.user); // Debugging
-
         if (!req.user || !req.user.userId) {
             return res.status(401).json({ message: "Unauthorized: Invalid token" });
         }
 
         const { teamName, players, captainID, viceCaptainID } = req.body;
-        const userId = req.user.userId; // ✅ Corrected from `req.user.id`
+        const userId = req.user.userId;
 
         if (!teamName || !players || !captainID || !viceCaptainID) {
             return res.status(400).json({ message: "Missing required fields." });
@@ -63,7 +61,7 @@ const createTeam = async (req, res) => {
 // Get all teams of a user 
 const getUserTeams = async (req, res) => {
     try {
-        const userId = req.user.userId; // Fix `req.user.id` → `req.user.userId`
+        const userId = req.user.userId;
         const teams = await Team.find({ userId });
         res.json(teams);
     } catch (error) {
