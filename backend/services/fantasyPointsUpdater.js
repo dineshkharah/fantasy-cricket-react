@@ -4,6 +4,7 @@ const Match = require("../models/MatchModel");
 const Team = require("../models/TeamModel");
 const Player = require("../models/PlayerModel");
 const { calculatePlayerFantasyPoints } = require("./scoringService"); // Importing the scoring logic
+const { matchPlayedAt } = require("./fixtureDate");
 
 const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -247,8 +248,12 @@ const updateFantasyPoints = async (matchId) => {
         await match.save();
 
         // Step 5: Update Fantasy Points for Teams
-        const teams = await Team.find({ createdAt: { $lte: match.createdAt } });
-        console.log(`Teams found before match: ${teams.length}`);
+        // a team only scores on a match played after the team was made.
+        // using the import date here let a team made in April collect points
+        // from matches played in March, whose results were already public.
+        const playedAt = matchPlayedAt(match);
+        const teams = await Team.find({ createdAt: { $lte: playedAt } });
+        console.log(`Played ${playedAt.toISOString()}, teams made before then: ${teams.length}`);
 
         for (let team of teams) {
             if (team.processedMatches && team.processedMatches.includes(match._id)) {

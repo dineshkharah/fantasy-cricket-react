@@ -33,7 +33,8 @@ const matchSchema = new mongoose.Schema({
     title: { type: String, required: true, unique: true },  // Unique Match ID
     series: { type: String, required: true },
     venue: { type: String, required: true },
-    dateTime: { type: String, required: true },
+    dateTime: { type: String, required: true },  // as the scorecard prints it, with no year
+    matchDate: { type: Date },  // when it was actually played, used to decide which teams score
     matchSummary: { type: String, required: true },
     innings: [inningsSchema],
     fantasyPointsProcessed: { type: Boolean, default: false } // stops a match being scored twice

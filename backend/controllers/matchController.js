@@ -1,5 +1,6 @@
 const Match = require("../models/MatchModel");
 const { findUnmatchedNames } = require("../services/unmatchedNames");
+const { fixtureDate } = require("../services/fixtureDate");
 
 // ✅ Save match stats to the database (Prevents Duplicates)
 const saveMatchStats = async (req, res) => {
@@ -19,6 +20,8 @@ const saveMatchStats = async (req, res) => {
             series: matchData.metadata.series,
             venue: matchData.metadata.venue,
             dateTime: matchData.metadata.dateTime,
+            // worked out once at import, so scoring never has to parse text
+            matchDate: fixtureDate(matchData.metadata.dateTime, matchData.metadata.series),
             matchSummary: matchData.metadata.matchSummary,
             innings: matchData.innings.map(inning => ({
                 team: inning.team,
