@@ -8,39 +8,62 @@ async function scrapeCricketScore(url) {
 
     const data = await page.evaluate(() => {
 
-        // out kaise hua woh batayega
-        function parseHowOut(text) {
-            let howOut = {};
+        // takes "(sub) Raj Bawa" or "Pant (c & wk)" and gives back just the name
+        function cleanName(name) {
+            return name
+                .replace(/\(sub\)/gi, "")
+                .replace(/\((c|wk|c\s*&\s*wk)\)/gi, "")
+                .replace(/\s+/g, " ")
+                .trim();
+        }
 
-            if (text.includes("not out")) {
-                return howOut = "not out";
+        // out kaise hua woh batayega.
+        // every pattern starts with ^ so it cannot restart on a c sitting inside a surname,
+        // and the b that splits the fielder from the bowler has to be a word on its own,
+        // so the b inside a name like Abdul or Corbin is never read as that separator.
+        function parseHowOut(text) {
+            const howOut = {};
+            if (!text) return howOut;
+
+            const line = text.replace(/\s+/g, " ").trim();
+
+            if (/\bnot out\b/i.test(line)) {
+                return "not out";
             }
 
-            if (text.includes("run out")) {
-                let match = text.match(/run out\s*\(([^)]+)\)/);
-                howOut["run out"] = match ? match[1] : "Unknown";
-            } else if (text.includes("st ")) {
-                let match = text.match(/st\s+([^b]+)b\s+(.+)/);
-                if (match) {
-                    howOut["st"] = match[1].trim();
-                    howOut["b"] = match[2].trim();
-                }
-            } else if (text.includes("c ")) {
-                let match = text.match(/c\s*(?:\((sub)?\))?\s*([^b]+)b\s+(.+)/);
-                if (match) {
-                    howOut["c"] = match[2].trim();
-                    howOut["b"] = match[3].trim();
-                } else {
-                    match = text.match(/c\s+(.+)/);
-                    if (match) {
-                        howOut["c"] = match[1].trim();
-                    }
-                }
-            } else if (text.includes("b ")) {
-                let match = text.match(/b\s+(.+)/);
-                if (match) {
-                    howOut["b"] = match[1].trim();
-                }
+            let match = line.match(/^run out\s*\(([^)]+)\)/i);
+            if (match) {
+                howOut["run out"] = cleanName(match[1]);
+                return howOut;
+            }
+
+            // caught and bowled, so the bowler took the catch as well
+            match = line.match(/^c\s+(?:and|&)\s+b\s+(.+)$/i);
+            if (match) {
+                const who = cleanName(match[1]);
+                howOut["c"] = who;
+                howOut["b"] = who;
+                return howOut;
+            }
+
+            match = line.match(/^st\s+(.+?)\s+b\s+(.+)$/i);
+            if (match) {
+                howOut["st"] = cleanName(match[1]);
+                howOut["b"] = cleanName(match[2]);
+                return howOut;
+            }
+
+            match = line.match(/^c\s+(.+?)\s+b\s+(.+)$/i);
+            if (match) {
+                howOut["c"] = cleanName(match[1]);
+                howOut["b"] = cleanName(match[2]);
+                return howOut;
+            }
+
+            match = line.match(/^(?:lbw\s+)?b\s+(.+)$/i);
+            if (match) {
+                howOut["b"] = cleanName(match[1]);
+                return howOut;
             }
 
             return howOut;
