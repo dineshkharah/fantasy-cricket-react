@@ -176,7 +176,7 @@ const updateFantasyPoints = async (matchId) => {
                 if (batting.how_out["run out"]) {
                     const fielder = await findPlayerByNameAndTeam(batting.how_out["run out"], bowlingTeam);
                     if (fielder) {
-                        const fieldingPoints = calculatePlayerFantasyPoints({ runOuts: 1 }, false, false, fielder.status === "Uncapped");
+                        const fieldingPoints = calculatePlayerFantasyPoints({ directHitRunOuts: 1 }, false, false, fielder.status === "Uncapped");
                         console.log(` Fielding | Player: ${fielder.name} | Run Out | Fantasy Points: ${fieldingPoints}`);
                         playerFantasyPoints[fielder.playerID] = (playerFantasyPoints[fielder.playerID] || 0) + fieldingPoints;
                     }
