@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
 import UnmatchedNames from "../components/admin/UnmatchedNames";
+import RecomputeScores from "../components/admin/RecomputeScores";
 
 const Admin = () => {
     const { user } = useAuth();
@@ -13,8 +14,9 @@ const Admin = () => {
                     Signed in as {user?.username} ({user?.role})
                 </p>
 
-                <div className="mt-6">
+                <div className="mt-6 space-y-6 pb-12">
                     <UnmatchedNames />
+                    <RecomputeScores />
                 </div>
             </div>
         </div>
