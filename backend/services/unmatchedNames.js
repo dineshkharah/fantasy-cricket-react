@@ -106,4 +106,4 @@ const findUnmatchedNames = async (matchId) => {
     };
 };
 
-module.exports = { findUnmatchedNames, collectLookups };
+module.exports = { findUnmatchedNames, collectLookups, cleanTeamName };
