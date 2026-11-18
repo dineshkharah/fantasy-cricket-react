@@ -6,7 +6,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -14,7 +14,7 @@ const Navbar = () => {
     }, [location.pathname]);
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        logout();
         navigate("/login");
     };
 
