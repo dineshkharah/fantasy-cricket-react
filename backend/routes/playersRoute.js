@@ -8,7 +8,8 @@ router.get("/", async (req, res) => {
         const players = await Player.find();
         res.json(players);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error("Error fetching players:", error);
+        res.status(500).json({ message: "Error fetching players" });
     }
 });
 

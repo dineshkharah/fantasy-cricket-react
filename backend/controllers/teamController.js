@@ -55,8 +55,7 @@ const createTeam = async (req, res) => {
         await newTeam.save();
         res.status(201).json(newTeam);
     } catch (error) {
-        console.error("Error in createTeam:", error); // Debugging
-        console.error("Server error:", error);
+        console.error("Error in createTeam:", error);
         res.status(500).json({ message: "Server error" });
     }
 };
