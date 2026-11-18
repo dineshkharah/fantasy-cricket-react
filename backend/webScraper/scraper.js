@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+const path = require('path');
 
 async function scrapeCricketScore(url) {
     const browser = await puppeteer.launch({ headless: true });
@@ -149,10 +150,27 @@ async function scrapeCricketScore(url) {
         return finalData;
     });
 
-    fs.writeFileSync('cricket_score.json', JSON.stringify(data, null, 2));
-    console.log('Data saved to cricket_score.json');
-
     await browser.close();
+
+    // a blocked page or a changed layout still gives us an object, just an empty one.
+    // writing that would wipe the last good scorecard, so check before saving.
+    const noInnings = data.innings.length === 0;
+    const noBatters = data.innings.every((inning) => inning.batting.length === 0);
+
+    if (!data.metadata.title || noInnings || noBatters) {
+        console.error('the scrape came back empty, so nothing was saved.');
+        console.error('the site may have blocked us, or the page layout may have changed.');
+        console.error(`title: "${data.metadata.title}"   innings found: ${data.innings.length}`);
+        process.exitCode = 1;
+        return;
+    }
+
+    // always write next to this script, whatever folder it was started from
+    const outFile = path.join(__dirname, 'cricket_score.json');
+    fs.writeFileSync(outFile, JSON.stringify(data, null, 2));
+
+    const batters = data.innings.reduce((sum, inning) => sum + inning.batting.length, 0);
+    console.log(`saved ${data.innings.length} innings and ${batters} batters to ${outFile}`);
 }
 
 let url = 'https://www.cricbuzz.com/live-cricket-scorecard/115059/lsg-vs-mi-16th-match-indian-premier-league-2025';
