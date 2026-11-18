@@ -98,8 +98,7 @@ const updateFantasyPoints = async (matchId) => {
                     dismissed: batting.how_out ? true : false,
                 };
 
-                const isUncapped = player.status === "Uncapped";
-                const fantasyPoints = calculatePlayerFantasyPoints(playerStats, false, false, isUncapped);
+                const fantasyPoints = calculatePlayerFantasyPoints(playerStats);
 
                 console.log(
                     ` Batting | Player: ${player.name} | Runs: ${playerStats.runs} | Fours: ${playerStats.fours} | Sixes: ${playerStats.sixes} | ` +
@@ -132,8 +131,7 @@ const updateFantasyPoints = async (matchId) => {
                     economy: bowling.economy || 0,
                 };
 
-                const isUncapped = player.status === "Uncapped";
-                const fantasyPoints = calculatePlayerFantasyPoints(playerStats, false, false, isUncapped);
+                const fantasyPoints = calculatePlayerFantasyPoints(playerStats);
 
                 console.log(
                     ` Bowling | Player: ${player.name} | Wickets: ${playerStats.wickets} | Dot Balls: ${playerStats.dotBalls} | ` +
@@ -158,7 +156,7 @@ const updateFantasyPoints = async (matchId) => {
                 if (batting.how_out.c) {
                     const fielder = await findPlayerByNameAndTeam(batting.how_out.c, bowlingTeam);
                     if (fielder) {
-                        const fieldingPoints = calculatePlayerFantasyPoints({ catches: 1 }, false, false, fielder.status === "Uncapped");
+                        const fieldingPoints = calculatePlayerFantasyPoints({ catches: 1 });
                         console.log(` Fielding | Player: ${fielder.name} | Caught Out | Fantasy Points: ${fieldingPoints}`);
                         playerFantasyPoints[fielder.playerID] = (playerFantasyPoints[fielder.playerID] || 0) + fieldingPoints;
                     }
@@ -167,7 +165,7 @@ const updateFantasyPoints = async (matchId) => {
                 if (batting.how_out.st) {
                     const keeper = await findPlayerByNameAndTeam(batting.how_out.st, bowlingTeam);
                     if (keeper) {
-                        const fieldingPoints = calculatePlayerFantasyPoints({ stumpings: 1 }, false, false, keeper.status === "Uncapped");
+                        const fieldingPoints = calculatePlayerFantasyPoints({ stumpings: 1 });
                         console.log(` Fielding | Player: ${keeper.name} | Stumping | Fantasy Points: ${fieldingPoints}`);
                         playerFantasyPoints[keeper.playerID] = (playerFantasyPoints[keeper.playerID] || 0) + fieldingPoints;
                     }
@@ -176,7 +174,7 @@ const updateFantasyPoints = async (matchId) => {
                 if (batting.how_out["run out"]) {
                     const fielder = await findPlayerByNameAndTeam(batting.how_out["run out"], bowlingTeam);
                     if (fielder) {
-                        const fieldingPoints = calculatePlayerFantasyPoints({ directHitRunOuts: 1 }, false, false, fielder.status === "Uncapped");
+                        const fieldingPoints = calculatePlayerFantasyPoints({ directHitRunOuts: 1 });
                         console.log(` Fielding | Player: ${fielder.name} | Run Out | Fantasy Points: ${fieldingPoints}`);
                         playerFantasyPoints[fielder.playerID] = (playerFantasyPoints[fielder.playerID] || 0) + fieldingPoints;
                     }

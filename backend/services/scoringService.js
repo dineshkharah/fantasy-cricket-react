@@ -1,4 +1,7 @@
-const calculatePlayerFantasyPoints = (playerStats, isCaptain, isViceCaptain, isUncapped) => {
+// returns the raw points for one performance.
+// the captain, vice captain and uncapped multipliers are applied by fantasyPointsUpdater
+// when it adds a player into a team total, so they only ever count once.
+const calculatePlayerFantasyPoints = (playerStats) => {
     let points = 0;
 
     const runs = Number(playerStats.runs) || 0;
@@ -64,11 +67,6 @@ const calculatePlayerFantasyPoints = (playerStats, isCaptain, isViceCaptain, isU
     points += stumpings * 12;
     points += directHitRunOuts * 12;
     points += assistedRunOuts * 6;
-
-    // 🏆 Captain, Vice-Captain, Uncapped Multipliers
-    if (isCaptain) points *= 3;
-    else if (isViceCaptain) points *= 2;
-    else if (isUncapped) points *= 1.5;
 
     if (isNaN(points)) {
         console.warn("⚠️ Warning: NaN detected in fantasy points calculation. Defaulting to 0.");
