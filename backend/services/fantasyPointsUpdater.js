@@ -7,44 +7,58 @@ const { calculatePlayerFantasyPoints } = require("./scoringService"); // Importi
 
 const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+// The shortest piece of a name we will trust. Anything smaller is a scrap,
+// not a name, and would match far too many players.
+const SHORTEST_NAME = 3;
+
+// Finds the one player a scorecard name refers to.
+// Steps 2 and 3 match only part of a name, so they ask for a whole word.
+// Without that, "and" matched Pandya and "h" matched Bumrah.
+// They also refuse to answer when more than one player fits, because picking
+// one of them would hand the points to the wrong person without saying so.
 const findPlayerByNameAndTeam = async (scrapedName, team) => {
     const cleanName = scrapedName.replace(/\(.*?\)/g, '').trim();
-    const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-    // Step 1: Try full name match
-    let regex = new RegExp(`^${escapeRegex(cleanName)}$`, "i");
-    let player = await Player.findOne({ name: regex });
+    // Step 1: the whole name, exactly. No player name is shared across teams,
+    // so this one does not need the team to be sure.
+    let player = await Player.findOne({ name: new RegExp(`^${escapeRegex(cleanName)}$`, "i") });
     if (player) {
         console.log(`✅ Matched full name: '${cleanName}' => ${player.name}`);
         return player;
     }
 
-    // Step 2: Try last name + team match
-    const nameParts = cleanName.split(" ");
-    const lastName = nameParts[nameParts.length - 1];
-    if (lastName.length > 1) {
-        regex = new RegExp(`${escapeRegex(lastName)}$`, "i");
-        player = await Player.findOne({
-            name: regex,
-            team: new RegExp(escapeRegex(team), "i"),
-        });
-        if (player) {
-            console.log(`🔁 Matched by last name '${lastName}' and team '${team}' => ${player.name}`);
-            return player;
-        }
+    if (cleanName.length < SHORTEST_NAME) {
+        console.warn(`❌ '${scrapedName}' is too short to be a name, so it was not looked up`);
+        return null;
     }
 
-    // Step 3: Try partial name match + team (for one-word names like "Pant")
-    if (nameParts.length === 1) {
-        regex = new RegExp(`${escapeRegex(cleanName)}`, "i");
-        player = await Player.findOne({
-            name: regex,
-            team: new RegExp(escapeRegex(team), "i"),
-        });
-        if (player) {
-            console.log(`🔍 Partial name + team match: '${cleanName}' => ${player.name}`);
-            return player;
+    const inTeam = { team: new RegExp(escapeRegex(team), "i") };
+
+    // only one player may fit, otherwise we do not know which one it is
+    const onlyOne = async (regex, how) => {
+        const found = await Player.find({ name: regex, ...inTeam });
+        if (found.length === 1) {
+            console.log(`🔁 Matched by ${how} => ${found[0].name}`);
+            return found[0];
         }
+        if (found.length > 1) {
+            console.warn(`❓ '${scrapedName}' in ${team} fits ${found.length} players: ${found.map((p) => p.name).join(", ")}`);
+        }
+        return null;
+    };
+
+    // Step 2: the last name, as a whole word at the end
+    const nameParts = cleanName.split(/\s+/);
+    const lastName = nameParts[nameParts.length - 1];
+    if (lastName.length >= SHORTEST_NAME) {
+        player = await onlyOne(new RegExp(`\\b${escapeRegex(lastName)}$`, "i"), `last name '${lastName}' and team '${team}'`);
+        if (player) return player;
+    }
+
+    // Step 3: a one word name like "Pant", as a whole word anywhere in the name
+    if (nameParts.length === 1) {
+        player = await onlyOne(new RegExp(`\\b${escapeRegex(cleanName)}\\b`, "i"), `part of the name '${cleanName}' and team '${team}'`);
+        if (player) return player;
     }
 
     console.warn(`❌ No match found for scraped name '${scrapedName}' with team '${team}'`);
