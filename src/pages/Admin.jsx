@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
+import UnmatchedNames from "../components/admin/UnmatchedNames";
 
 const Admin = () => {
     const { user } = useAuth();
@@ -12,10 +13,8 @@ const Admin = () => {
                     Signed in as {user?.username} ({user?.role})
                 </p>
 
-                <div className="bg-gray-800 rounded-xl shadow-md p-6 mt-6">
-                    <p className="text-gray-300">
-                        No tools here yet. They get added one at a time.
-                    </p>
+                <div className="mt-6">
+                    <UnmatchedNames />
                 </div>
             </div>
         </div>
