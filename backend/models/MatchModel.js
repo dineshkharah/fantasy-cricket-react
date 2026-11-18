@@ -35,7 +35,8 @@ const matchSchema = new mongoose.Schema({
     venue: { type: String, required: true },
     dateTime: { type: String, required: true },
     matchSummary: { type: String, required: true },
-    innings: [inningsSchema]
+    innings: [inningsSchema],
+    fantasyPointsProcessed: { type: Boolean, default: false } // stops a match being scored twice
 }, { timestamps: true });
 
 const Match = mongoose.model("Match", matchSchema);
