@@ -6,6 +6,10 @@
 
 require("dotenv").config({ path: require("path").join(__dirname, ".env") });
 const mongoose = require("mongoose");
+
+// same as server.js, some networks cannot resolve the mongodb+srv address on their own
+const dns = require("node:dns");
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
 const User = require("./models/User");
 
 const run = async () => {
