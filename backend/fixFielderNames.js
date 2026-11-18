@@ -18,8 +18,7 @@ const dns = require("node:dns");
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 const Match = require("./models/MatchModel");
-const Player = require("./models/PlayerModel");
-const { findPlayerByNameAndTeam } = require("./services/fantasyPointsUpdater");
+const { loadPlayerIndex } = require("./services/fantasyPointsUpdater");
 const { cleanTeamName } = require("./services/unmatchedNames");
 
 // The old broken pattern, kept only so we can work out which real name it ate.
@@ -73,9 +72,8 @@ const run = async () => {
     await mongoose.connect(process.env.MONGO_URI);
     console.log(save ? "connected, changes will be saved" : "connected, this is a dry run");
 
-    const everyPlayer = await Player.find().select("name team");
-    const squadOf = (team) =>
-        everyPlayer.filter((player) => player.team.toLowerCase() === team.toLowerCase()).map((player) => player.name);
+    // read the players once, then every lookup below happens in memory
+    const playerIndex = await loadPlayerIndex();
 
     const matches = await Match.find();
     console.log(`matches stored: ${matches.length}`);
@@ -95,7 +93,7 @@ const run = async () => {
             const inning = match.innings[i];
             const battingTeam = cleanTeamName(inning.team);
             const fieldingTeam = battingTeam === team1 ? team2 : team1;
-            const squad = squadOf(fieldingTeam);
+            const squad = playerIndex.squad(fieldingTeam);
 
             for (let j = 0; j < inning.batting.length; j++) {
                 const batting = inning.batting[j];
@@ -107,7 +105,7 @@ const run = async () => {
                     if (!name) continue;
 
                     // a name that already finds a player is left alone
-                    if (await findPlayerByNameAndTeam(name, fieldingTeam)) continue;
+                    if (playerIndex.byName(name, fieldingTeam)) continue;
 
                     const mend = repair(kind, out, squad);
                     if (!mend) {
@@ -117,7 +115,7 @@ const run = async () => {
                     }
 
                     // never write a name that still would not match a player
-                    const found = await findPlayerByNameAndTeam(mend.fielder, fieldingTeam);
+                    const found = playerIndex.byName(mend.fielder, fieldingTeam);
                     if (!found) {
                         stuck++;
                         console.log(`  guessed "${mend.fielder}" for ${kind} "${name}", but no such player in ${fieldingTeam}`);

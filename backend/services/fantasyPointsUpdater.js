@@ -11,20 +11,22 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 // not a name, and would match far too many players.
 const SHORTEST_NAME = 3;
 
-// Finds the one player a scorecard name refers to.
+// Finds the one player a scorecard name refers to, out of a list already in memory.
 // Steps 2 and 3 match only part of a name, so they ask for a whole word.
 // Without that, "and" matched Pandya and "h" matched Bumrah.
 // They also refuse to answer when more than one player fits, because picking
 // one of them would hand the points to the wrong person without saying so.
-const findPlayerByNameAndTeam = async (scrapedName, team) => {
-    const cleanName = scrapedName.replace(/\(.*?\)/g, '').trim();
+// There is no database in here, so it can be tested on its own.
+const matchPlayer = (players, scrapedName, team) => {
+    const cleanName = String(scrapedName || "").replace(/\(.*?\)/g, '').trim();
+    if (!cleanName) return null;
 
     // Step 1: the whole name, exactly. No player name is shared across teams,
     // so this one does not need the team to be sure.
-    let player = await Player.findOne({ name: new RegExp(`^${escapeRegex(cleanName)}$`, "i") });
-    if (player) {
-        console.log(`✅ Matched full name: '${cleanName}' => ${player.name}`);
-        return player;
+    const exact = players.find((p) => p.name.toLowerCase() === cleanName.toLowerCase());
+    if (exact) {
+        console.log(`✅ Matched full name: '${cleanName}' => ${exact.name}`);
+        return exact;
     }
 
     if (cleanName.length < SHORTEST_NAME) {
@@ -32,11 +34,12 @@ const findPlayerByNameAndTeam = async (scrapedName, team) => {
         return null;
     }
 
-    const inTeam = { team: new RegExp(escapeRegex(team), "i") };
+    const teamLower = String(team || "").toLowerCase();
+    const inTeam = players.filter((p) => String(p.team || "").toLowerCase().includes(teamLower));
 
     // only one player may fit, otherwise we do not know which one it is
-    const onlyOne = async (regex, how) => {
-        const found = await Player.find({ name: regex, ...inTeam });
+    const onlyOne = (pattern, how) => {
+        const found = inTeam.filter((p) => pattern.test(p.name));
         if (found.length === 1) {
             console.log(`🔁 Matched by ${how} => ${found[0].name}`);
             return found[0];
@@ -51,18 +54,47 @@ const findPlayerByNameAndTeam = async (scrapedName, team) => {
     const nameParts = cleanName.split(/\s+/);
     const lastName = nameParts[nameParts.length - 1];
     if (lastName.length >= SHORTEST_NAME) {
-        player = await onlyOne(new RegExp(`\\b${escapeRegex(lastName)}$`, "i"), `last name '${lastName}' and team '${team}'`);
+        const player = onlyOne(new RegExp(`\\b${escapeRegex(lastName)}$`, "i"), `last name '${lastName}' and team '${team}'`);
         if (player) return player;
     }
 
     // Step 3: a one word name like "Pant", as a whole word anywhere in the name
     if (nameParts.length === 1) {
-        player = await onlyOne(new RegExp(`\\b${escapeRegex(cleanName)}\\b`, "i"), `part of the name '${cleanName}' and team '${team}'`);
+        const player = onlyOne(new RegExp(`\\b${escapeRegex(cleanName)}\\b`, "i"), `part of the name '${cleanName}' and team '${team}'`);
         if (player) return player;
     }
 
     console.warn(`❌ No match found for scraped name '${scrapedName}' with team '${team}'`);
     return null;
+};
+
+// Reads every player once and hands back lookups that run in memory.
+// Scoring one match asks for hundreds of names, and every team's fifteen
+// players on top. Asking the database each time meant hundreds of trips
+// over the network for a list that fits in memory many times over.
+const loadPlayerIndex = async () => {
+    const players = await Player.find().lean();
+    const byId = new Map(players.map((p) => [p.playerID, p]));
+
+    return {
+        count: players.length,
+        byName: (scrapedName, team) => matchPlayer(players, scrapedName, team),
+        byPlayerId: (playerID) => byId.get(playerID) || null,
+        // the players a name in this team could have matched, so a report can
+        // show exactly the pool the matcher was choosing from
+        squad: (team) =>
+            players
+                .filter((p) => String(p.team || "").toLowerCase().includes(String(team || "").toLowerCase()))
+                .map((p) => p.name)
+                .sort(),
+    };
+};
+
+// For a caller that only needs one name. Anything looking up a whole
+// scorecard should load the index once instead of calling this in a loop.
+const findPlayerByNameAndTeam = async (scrapedName, team) => {
+    const index = await loadPlayerIndex();
+    return index.byName(scrapedName, team);
 };
 
 
@@ -92,6 +124,10 @@ const updateFantasyPoints = async (matchId) => {
         console.log(`Processing fantasy points for match ${matchId}`);
         const playerFantasyPoints = {};
 
+        // read the players once, then every lookup below happens in memory
+        const playerIndex = await loadPlayerIndex();
+        console.log(`Loaded ${playerIndex.count} players`);
+
         // Step 1: Process Batting Stats
         for (let inning of match.innings) {
             const battingTeam = inning.team?.split("Innings")[0]?.trim() || "";
@@ -100,7 +136,7 @@ const updateFantasyPoints = async (matchId) => {
             const rawTeamName = inning.team || "";
             const teamName = rawTeamName.split("Innings")[0].trim();
             for (let batting of inning.batting) {
-                const player = await findPlayerByNameAndTeam(batting.playerName, battingTeam);
+                const player = playerIndex.byName(batting.playerName, battingTeam);
                 if (!player) continue;
 
                 const playerStats = {
@@ -132,7 +168,7 @@ const updateFantasyPoints = async (matchId) => {
             const rawTeamName = inning.team || "";
             const teamName = rawTeamName.split("Innings")[0].trim();
             for (let bowling of inning.bowling) {
-                const player = await findPlayerByNameAndTeam(bowling.playerName, bowlingTeam);
+                const player = playerIndex.byName(bowling.playerName, bowlingTeam);
                 if (!player) continue;
 
                 const playerStats = {
@@ -168,7 +204,7 @@ const updateFantasyPoints = async (matchId) => {
                 if (!batting.how_out) continue;
 
                 if (batting.how_out.c) {
-                    const fielder = await findPlayerByNameAndTeam(batting.how_out.c, bowlingTeam);
+                    const fielder = playerIndex.byName(batting.how_out.c, bowlingTeam);
                     if (fielder) {
                         const fieldingPoints = calculatePlayerFantasyPoints({ catches: 1 });
                         console.log(` Fielding | Player: ${fielder.name} | Caught Out | Fantasy Points: ${fieldingPoints}`);
@@ -177,7 +213,7 @@ const updateFantasyPoints = async (matchId) => {
                 }
 
                 if (batting.how_out.st) {
-                    const keeper = await findPlayerByNameAndTeam(batting.how_out.st, bowlingTeam);
+                    const keeper = playerIndex.byName(batting.how_out.st, bowlingTeam);
                     if (keeper) {
                         const fieldingPoints = calculatePlayerFantasyPoints({ stumpings: 1 });
                         console.log(` Fielding | Player: ${keeper.name} | Stumping | Fantasy Points: ${fieldingPoints}`);
@@ -186,7 +222,7 @@ const updateFantasyPoints = async (matchId) => {
                 }
 
                 if (batting.how_out["run out"]) {
-                    const fielder = await findPlayerByNameAndTeam(batting.how_out["run out"], bowlingTeam);
+                    const fielder = playerIndex.byName(batting.how_out["run out"], bowlingTeam);
                     if (fielder) {
                         const fieldingPoints = calculatePlayerFantasyPoints({ directHitRunOuts: 1 });
                         console.log(` Fielding | Player: ${fielder.name} | Run Out | Fantasy Points: ${fieldingPoints}`);
@@ -197,12 +233,15 @@ const updateFantasyPoints = async (matchId) => {
         }
 
         // Step 4: Update Fantasy Points for Players
-        for (const [playerId, points] of Object.entries(playerFantasyPoints)) {
-            await Player.findOneAndUpdate(
-                { playerID: playerId },
-                { $inc: { fantasyPoints: points } },
-                { new: true }
-            );
+        // send every player's points in one go, rather than one trip each
+        const playerWrites = Object.entries(playerFantasyPoints).map(([playerId, points]) => ({
+            updateOne: {
+                filter: { playerID: playerId },
+                update: { $inc: { fantasyPoints: points } },
+            },
+        }));
+        if (playerWrites.length > 0) {
+            await Player.bulkWrite(playerWrites);
         }
 
         await match.save();
@@ -220,7 +259,7 @@ const updateFantasyPoints = async (matchId) => {
             let totalTeamPoints = 0;
 
             for (let teamPlayer of team.players) {
-                const player = await Player.findOne({ playerID: teamPlayer.playerID });
+                const player = playerIndex.byPlayerId(teamPlayer.playerID);
                 if (!player) continue;
 
                 let basePoints = playerFantasyPoints[player.playerID] || 0;
@@ -268,4 +307,4 @@ const updateFantasyPoints = async (matchId) => {
     }
 };
 
-module.exports = { updateFantasyPoints, findPlayerByNameAndTeam };
+module.exports = { updateFantasyPoints, findPlayerByNameAndTeam, loadPlayerIndex, matchPlayer };

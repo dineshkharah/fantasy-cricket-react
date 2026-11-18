@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Match = require("../models/MatchModel");
-const Player = require("../models/PlayerModel");
-const { findPlayerByNameAndTeam } = require("./fantasyPointsUpdater");
+const { loadPlayerIndex } = require("./fantasyPointsUpdater");
 
 // Reports every name on a scorecard that does not match a player in our database.
 // Those performances score nothing, so this is the list of points that would be
@@ -68,14 +67,17 @@ const findUnmatchedNames = async (matchId) => {
 
     const lookups = collectLookups(match);
 
-    // the same name turns up more than once, so only ask the database once for each
+    // read the players once, then match every name in memory
+    const playerIndex = await loadPlayerIndex();
+
+    // the same name turns up more than once, so only work it out once
     const seen = new Map();
     const unmatched = [];
 
     for (const lookup of lookups) {
         const key = `${lookup.name}|${lookup.team}`;
         if (!seen.has(key)) {
-            seen.set(key, await findPlayerByNameAndTeam(lookup.name, lookup.team));
+            seen.set(key, playerIndex.byName(lookup.name, lookup.team));
         }
         if (!seen.get(key)) {
             unmatched.push(lookup);
@@ -84,15 +86,8 @@ const findUnmatchedNames = async (matchId) => {
 
     // hand back the squad of each team involved, so the right name is easy to spot
     const squads = {};
-    const teamsNeeded = [...new Set(unmatched.map((row) => row.team))];
-
-    if (teamsNeeded.length > 0) {
-        const everyPlayer = await Player.find().select("name team").sort({ name: 1 });
-        for (const team of teamsNeeded) {
-            squads[team] = everyPlayer
-                .filter((player) => player.team.toLowerCase() === team.toLowerCase())
-                .map((player) => player.name);
-        }
+    for (const team of new Set(unmatched.map((row) => row.team))) {
+        squads[team] = playerIndex.squad(team);
     }
 
     return {
