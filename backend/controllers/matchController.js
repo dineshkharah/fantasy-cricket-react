@@ -1,4 +1,5 @@
 const Match = require("../models/MatchModel");
+const { findUnmatchedNames } = require("../services/unmatchedNames");
 
 // ✅ Save match stats to the database (Prevents Duplicates)
 const saveMatchStats = async (req, res) => {
@@ -76,4 +77,19 @@ const getAllMatches = async (req, res) => {
     }
 };
 
-module.exports = { saveMatchStats, getMatchById, getAllMatches };
+// Reports the scorecard names that do not match a player in our database.
+// Read only, so it is safe to run before scoring a match.
+const checkMatchNames = async (req, res) => {
+    try {
+        const result = await findUnmatchedNames(req.params.matchId);
+        if (result.error) {
+            return res.status(404).json({ message: result.error });
+        }
+        res.json(result);
+    } catch (error) {
+        console.error("checkMatchNames failed:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+};
+
+module.exports = { saveMatchStats, getMatchById, getAllMatches, checkMatchNames };

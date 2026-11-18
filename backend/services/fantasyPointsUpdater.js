@@ -254,4 +254,4 @@ const updateFantasyPoints = async (matchId) => {
     }
 };
 
-module.exports = { updateFantasyPoints };
+module.exports = { updateFantasyPoints, findPlayerByNameAndTeam };

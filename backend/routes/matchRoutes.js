@@ -2,7 +2,8 @@ const express = require("express");
 const {
     saveMatchStats,
     getMatchById,
-    getAllMatches
+    getAllMatches,
+    checkMatchNames
 } = require("../controllers/matchController");
 const verifyToken = require("../middlewares/authMiddleware");
 const requireAdmin = require("../middlewares/adminMiddleware");
@@ -10,6 +11,8 @@ const requireAdmin = require("../middlewares/adminMiddleware");
 const router = express.Router();
 
 router.post("/save", verifyToken, requireAdmin, saveMatchStats); // admins only
+
+router.get("/:matchId/unmatched", verifyToken, requireAdmin, checkMatchNames); // admins only
 
 router.get("/:matchTitle", getMatchById);
 
