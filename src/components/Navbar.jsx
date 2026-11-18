@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { user } = useAuth();
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -43,6 +45,14 @@ const Navbar = () => {
                     >
                         Team Selection
                     </Link>
+                    {isLoggedIn && user?.role === "admin" && (
+                        <Link
+                            to="/admin"
+                            className="text-blue-400 hover:text-blue-300 hover:scale-105 transition-transform duration-200"
+                        >
+                            Admin
+                        </Link>
+                    )}
                 </div>
 
                 <div>

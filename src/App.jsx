@@ -8,7 +8,10 @@ import TeamPage from "./pages/TeamPage";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 
+import Admin from "./pages/Admin";
+
 import ProtectedRoute from "./protected/ProtectedRoute";
+import AdminRoute from "./protected/AdminRoute";
 
 function App() {
   return (
@@ -21,6 +24,7 @@ function App() {
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/players" element={<Players />} />
         <Route path="/team-selection" element={<ProtectedRoute><TeamPage /></ProtectedRoute>} />
+        <Route path="/admin" element={<AdminRoute><Admin /></AdminRoute>} />
       </Routes>
     </Router>
   );
